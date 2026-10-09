@@ -1,43 +1,70 @@
 ---
 layout: default
 ---
+<div class="oh-home">
+  <div class="oh-home-language" aria-label="Language">
+    <button type="button" class="active" id="oh-lang-jp" aria-pressed="true">JP</button>
+    <span aria-hidden="true">/</span>
+    <button type="button" id="oh-lang-en" aria-pressed="false">EN</button>
+  </div>
 
-<header class="site-header">
-  OHLUCINDA
-</header>
+  <h1 class="oh-home-title">OHLUCINDA</h1>
 
-{% assign home_window = site.data.home_window %}
-{% assign window_text = home_window.text | default: '' | strip %}
-{% assign window_image = home_window.image | default: '' | strip %}
-{% if window_text != '' or window_image != '' %}
-<section class="home-window" aria-label="メッセージ">
-  {% if window_image != '' %}
-    <img class="home-window-image" src="{{ window_image | relative_url }}" alt="{{ home_window.alt | escape }}">
+  {% assign home_window = site.data.home_window %}
+  {% assign window_text = home_window.text | default: '' | strip %}
+  {% assign window_image = home_window.image | default: '' | strip %}
+  {% if window_text != '' or window_image != '' %}
+    <section class="oh-home-window" aria-label="Home window">
+      {% if window_text != '' %}<p>{{ window_text | escape | newline_to_br }}</p>{% endif %}
+      {% if window_image != '' %}<img src="{{ window_image | relative_url }}" alt="{{ home_window.alt | escape }}">{% endif %}
+    </section>
   {% endif %}
-  {% if window_text != '' %}
-    <div class="home-window-text">{{ window_text | escape | newline_to_br }}</div>
-  {% endif %}
-</section>
-{% endif %}
 
-<nav class="top-nav">
+  <nav class="oh-home-nav" aria-label="Main navigation">
+    <details>
+      <summary>Works</summary>
+      <div class="oh-home-works">
+        <a id="oh-white-morning" href="https://shiroiasa.ohlucinda.com/">白い朝</a>
+        <a href="https://gem.ohlucinda.com/">gem</a>
+      </div>
+    </details>
+    <span class="oh-home-nav-label" id="oh-anything">Anything Goes <span class="oh-home-note">（なんでも作品）</span></span>
+    <a href="{{ '/months/' | relative_url }}">Months</a>
+    <a href="https://lyrics.ohlucinda.com/">Lyrics</a>
+    <a href="{{ '/bookmarks/' | relative_url }}">Bookmarks</a>
+    <a href="{{ '/about/' | relative_url }}">About</a>
+  </nav>
 
-  <div>
-    <a href="{{ '/months/' | relative_url }}">
-      Months
-    </a>
-  </div>
-
-  <div>
-    <a href="{{ '/bookmarks/' | relative_url }}">
-      Bookmarks
-    </a>
-  </div>
-
-  <div>
-    <a href="{{ '/about/' | relative_url }}">
-      About
-    </a>
-  </div>
-
-</nav>
+  <footer class="oh-home-footer">
+    <a class="oh-home-contact" href="mailto:jemmusicja@duck.com">GET IN TOUCH</a>
+    <div class="oh-home-copyright">© OHLUCINDA</div>
+  </footer>
+</div>
+<script>
+(function () {
+  var jp = document.getElementById('oh-lang-jp');
+  var en = document.getElementById('oh-lang-en');
+  var anything = document.getElementById('oh-anything');
+  var morning = document.getElementById('oh-white-morning');
+  function choose(lang) {
+    var english = lang === 'en';
+    document.documentElement.lang = english ? 'en' : 'ja';
+    jp.classList.toggle('active', !english);
+    en.classList.toggle('active', english);
+    jp.setAttribute('aria-pressed', String(!english));
+    en.setAttribute('aria-pressed', String(english));
+    anything.textContent = 'Anything Goes';
+    if (!english) {
+      var note = document.createElement('span');
+      note.className = 'oh-home-note';
+      note.textContent = '（なんでも作品）';
+      anything.appendChild(document.createTextNode(' '));
+      anything.appendChild(note);
+    }
+    morning.textContent = english ? 'White Morning' : '白い朝';
+    morning.href = english ? 'https://shiroiasa.ohlucinda.com/en/' : 'https://shiroiasa.ohlucinda.com/';
+  }
+  jp.addEventListener('click', function () { choose('jp'); });
+  en.addEventListener('click', function () { choose('en'); });
+})();
+</script>
