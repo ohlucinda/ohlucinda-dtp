@@ -536,7 +536,7 @@ body:has(.oh-home) main { max-width:none; margin:0; padding:0; line-height:norma
 .oh-home-nav summary::-webkit-details-marker{display:none}
 .oh-home-nav .oh-home-note{font-family:inherit;font-size:.78em;font-weight:400;line-height:1.6;letter-spacing:.02em;margin-left:4px;white-space:nowrap}
 .oh-home-works{display:flex;justify-content:center;flex-wrap:wrap;gap:14px 26px;padding:12px 0 2px;margin:0}
-.oh-home-works a{font:15px/1.6 system-ui,sans-serif;text-decoration:underline;text-decoration-color:#bbb;text-underline-offset:4px}
+.oh-home-works a{font:20px/1.6 system-ui,sans-serif;text-decoration:underline;text-decoration-color:#bbb;text-underline-offset:4px}
 .oh-home-footer{width:100%;display:flex;align-items:center;flex-direction:column;justify-content:center;text-align:center;margin-top:auto;padding:clamp(80px,11vh,135px) 0 45px;gap:30px}
 .oh-home-contact{display:inline-flex;align-items:center;padding:6px 0 5px;border-bottom:1px solid #111;font:12px/1.5 serif;letter-spacing:.04em}
 .oh-home-copyright{font:11px/1.6 serif;letter-spacing:.015em;color:#444}
@@ -560,3 +560,5 @@ body:has(.oh-home) main { max-width:none; margin:0; padding:0; line-height:norma
  .oh-home-footer{padding-top:72px;padding-bottom:40px;gap:28px}
 }
 @media(max-width:360px){.oh-home-nav .oh-home-note{display:block;margin:0}.oh-home{width:calc(100% - 28px)}}
+ 
+@media(max-width:480px){.oh-home-works a{font-size:19px}}
