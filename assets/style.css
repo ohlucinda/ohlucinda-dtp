@@ -486,3 +486,29 @@ and (orientation: landscape) {
   .links { font-size: 16px; overflow-wrap: anywhere; }
   .about-content { max-width: 100%; overflow-wrap: anywhere; }
 }
+
+
+/* Home message/image window; content comes from _data/home_window.yml */
+.home-window {
+  width: min(100%, 380px);
+  margin: -40px auto 65px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background: rgba(255,255,255,.88);
+  text-align: center;
+}
+.home-window-image {
+  width: 100%;
+  height: auto;
+  margin: 0 0 12px;
+  display: block;
+}
+.home-window-image:last-child { margin-bottom: 0; }
+.home-window-text {
+  font-size: 15px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 767px) {
+  .home-window { width: min(100%, 320px); margin: -40px auto 55px; padding: 16px; }
+}
