@@ -20,7 +20,7 @@ collections:
     delete: false
     extension: md
     format: frontmatter
-    slug: "{{date | date('YYYY-MM-DD')}}-{{slug}}"
+    slug: "{{fields.date | date('YYYY-MM-DD')}}-{{slug}}"
     fields:
       - label: "レイアウト"
         name: layout
@@ -35,7 +35,7 @@ collections:
         widget: datetime
         type: date
         format: YYYY-MM-DD
-        default: "{{now}}"
+        default: "{{today}}"
         required: true
       - label: "公開URL（英語・ローマ字。例：/akai-mono/）"
         name: permalink
