@@ -512,3 +512,51 @@ and (orientation: landscape) {
 @media (max-width: 767px) {
   .home-window { width: min(100%, 320px); margin: -40px auto 55px; padding: 16px; }
 }
+
+
+/* OHLUCINDA home only. Existing article and journal styles stay untouched. */
+body:has(.oh-home) main { max-width:none; margin:0; padding:0; line-height:normal; }
+.oh-home {box-sizing:border-box;width:min(calc(100% - 36px),620px);margin:0 auto;min-height:100svh;display:flex;flex-direction:column;align-items:center;color:#111;font-family:system-ui,sans-serif;-webkit-text-size-adjust:100%}
+.oh-home *, .oh-home *::before,.oh-home *::after{box-sizing:border-box}
+.oh-home a{color:inherit;text-decoration:none}
+.oh-home a:hover,.oh-home summary:hover{color:#777}
+.oh-home-language{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:clamp(22px,4vh,38px);font:12px/1.5 system-ui,sans-serif;letter-spacing:.08em}
+.oh-home-language button{cursor:pointer;border:0;border-bottom:1px solid transparent;background:none;font:inherit;letter-spacing:inherit;color:#999;padding:5px 3px}
+.oh-home-language button.active{color:#111;border-color:#111}
+.oh-home-title{font-family:"jimbo-std-expanded",sans-serif;font-weight:400;font-size:clamp(26px,4vw,42px);letter-spacing:.02em;line-height:1.3;text-align:center;margin:clamp(66px,9vh,105px) 0 0;max-width:100%;overflow-wrap:anywhere}
+.oh-home-window{margin:clamp(61px,8vh,93px) auto clamp(64px,9vh,105px);width:100%;max-width:410px;text-align:center;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:15px}
+.oh-home-window p{font:14px/1.95 system-ui,sans-serif;letter-spacing:.025em;margin:0;max-width:100%;overflow-wrap:anywhere}
+.oh-home-window img{display:block;width:auto;max-width:min(100%,310px);max-height:230px;height:auto;object-fit:contain;margin:0 auto}
+.oh-home-nav{display:flex;align-items:center;flex-direction:column;text-align:center;gap:clamp(12px,2vh,20px);width:100%;margin-top:clamp(64px,9vh,105px)}
+.oh-home-window + .oh-home-nav{margin-top:0}
+.oh-home-nav a,.oh-home-nav summary,.oh-home-nav-label{font-family:"jimbo-std-expanded",sans-serif;font-size:clamp(19px,2.1vw,22px);letter-spacing:.02em;line-height:1.6}
+.oh-home-nav details{margin:0}
+.oh-home-nav summary{list-style:none;cursor:pointer;margin:0}
+.oh-home-nav summary::before{display:none}
+.oh-home-nav summary::-webkit-details-marker{display:none}
+.oh-home-nav .oh-home-note{font-family:inherit;font-size:.78em;font-weight:400;line-height:1.6;letter-spacing:.02em;margin-left:4px;white-space:nowrap}
+.oh-home-works{display:flex;justify-content:center;flex-wrap:wrap;gap:14px 26px;padding:12px 0 2px;margin:0}
+.oh-home-works a{font:15px/1.6 system-ui,sans-serif;text-decoration:underline;text-decoration-color:#bbb;text-underline-offset:4px}
+.oh-home-footer{width:100%;display:flex;align-items:center;flex-direction:column;justify-content:center;text-align:center;margin-top:auto;padding:clamp(80px,11vh,135px) 0 45px;gap:30px}
+.oh-home-contact{display:inline-flex;align-items:center;padding:6px 0 5px;border-bottom:1px solid #111;font:12px/1.5 serif;letter-spacing:.04em}
+.oh-home-copyright{font:11px/1.6 serif;letter-spacing:.015em;color:#444}
+.oh-home a:focus-visible,.oh-home summary:focus-visible,.oh-home button:focus-visible{outline:2px solid #777;outline-offset:4px}
+@media(max-width:600px){
+ .oh-home{width:min(calc(100% - 40px),440px)}
+ .oh-home-title{margin-top:clamp(65px,9vh,95px);font-size:clamp(25px,7vw,33px)}
+ .oh-home-window{max-width:320px;margin:clamp(60px,8vh,85px) auto clamp(60px,9vh,82px)}
+ .oh-home-window img{max-width:min(100%,285px);max-height:205px}
+ .oh-home-nav{gap:clamp(13px,2vh,18px)}
+ .oh-home-nav a,.oh-home-nav summary,.oh-home-nav-label{font-size:clamp(19px,5.4vw,22px)}
+ .oh-home-nav .oh-home-note{font-size:.78em;margin-left:4px}
+ .oh-home-footer{padding-top:90px}
+}
+@media(max-width:480px){
+ .oh-home-window{margin-top:clamp(54px,7vh,68px);margin-bottom:clamp(54px,7.5vh,72px)}
+ .oh-home-window img{max-width:min(100%,245px);max-height:180px}
+ .oh-home-nav{gap:clamp(15px,2.15vh,20px)}
+ .oh-home-nav a,.oh-home-nav summary,.oh-home-nav-label{font-size:18px;line-height:1.55}
+ .oh-home-nav .oh-home-note{font-size:15px;margin-left:3px}
+ .oh-home-footer{padding-top:72px;padding-bottom:40px;gap:28px}
+}
+@media(max-width:360px){.oh-home-nav .oh-home-note{display:block;margin:0}.oh-home{width:calc(100% - 28px)}}
