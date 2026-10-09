@@ -8,7 +8,7 @@ content:
     path: _posts
     format: yaml-frontmatter
     filename:
-      template: "{fields.date}-{fields.permalink}.md"
+      template: "{fields.date}-{primary}.md"
       field: false
     view:
       fields: [title, date]
