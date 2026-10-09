@@ -1,0 +1,48 @@
+# Months visual editor trial. Write only to the work branch.
+backend:
+  name: github
+  repo: ohlucinda/ohlucinda-dtp
+  branch: work/responsive-unification
+
+locale: ja
+slug:
+  encoding: unicode
+  timezone: local
+
+media_folder: images
+public_folder: /images
+
+collections:
+  - name: months
+    label: "Months（ジャーナル）"
+    folder: _posts
+    create: true
+    delete: false
+    extension: md
+    format: frontmatter
+    slug: "{{date | date('YYYY-MM-DD')}}-{{slug}}"
+    fields:
+      - label: "レイアウト"
+        name: layout
+        widget: hidden
+        default: default
+      - label: "タイトル"
+        name: title
+        widget: string
+        required: true
+      - label: "日付（必ず確認・必要なら変更）"
+        name: date
+        widget: datetime
+        type: date
+        format: YYYY-MM-DD
+        default: "{{now}}"
+        required: true
+      - label: "公開URL（英語・ローマ字。例：/akai-mono/）"
+        name: permalink
+        widget: string
+        required: true
+        hint: "既存の記事と重ならないURLを入力してください"
+      - label: "本文"
+        name: body
+        widget: richtext
+        required: false
