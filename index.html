@@ -21,13 +21,6 @@ layout: default
   {% endif %}
 
   <nav class="oh-home-nav" aria-label="Main navigation">
-    <details>
-      <summary>Works</summary>
-      <div class="oh-home-works">
-        <a id="oh-white-morning" href="https://shiroiasa.ohlucinda.com/">白い朝</a>
-        <a href="https://gem.ohlucinda.com/">gem</a>
-      </div>
-    </details>
     <span class="oh-home-nav-label" id="oh-anything">Anything Goes <span class="oh-home-note">（なんでも作品）</span></span>
     <a href="{{ '/months/' | relative_url }}">Months</a>
     <a href="https://lyrics.ohlucinda.com/">Lyrics</a>
@@ -45,7 +38,6 @@ layout: default
   var jp = document.getElementById('oh-lang-jp');
   var en = document.getElementById('oh-lang-en');
   var anything = document.getElementById('oh-anything');
-  var morning = document.getElementById('oh-white-morning');
   function choose(lang) {
     var english = lang === 'en';
     document.documentElement.lang = english ? 'en' : 'ja';
@@ -61,8 +53,6 @@ layout: default
       anything.appendChild(document.createTextNode(' '));
       anything.appendChild(note);
     }
-    morning.textContent = english ? 'White Morning' : '白い朝';
-    morning.href = english ? 'https://shiroiasa.ohlucinda.com/en/' : 'https://shiroiasa.ohlucinda.com/';
   }
   jp.addEventListener('click', function () { choose('jp'); });
   en.addEventListener('click', function () { choose('en'); });
