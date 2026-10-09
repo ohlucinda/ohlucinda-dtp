@@ -9,7 +9,7 @@ content:
     format: yaml-frontmatter
     filename:
       template: "{fields.date}-{fields.permalink}.md"
-      field: create
+      field: false
     view:
       fields: [title, date]
       primary: title
@@ -24,6 +24,9 @@ content:
       - name: date
         label: Date
         type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
       - name: permalink
         label: Public URL (e.g. /akai-mono/)
         type: string
