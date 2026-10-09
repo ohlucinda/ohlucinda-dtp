@@ -463,3 +463,26 @@ and (orientation: landscape) {
   }
 
 }
+
+
+/* Responsive unification: smaller screens use this same site. */
+@media (max-width: 767px) {
+  main { padding: 68px 24px 48px; line-height: 2.15; }
+  .site-header { font-size: 24px; margin-bottom: 90px; transform: none; }
+  .post-title { font-size: 20px; margin-bottom: 80px; transform: none; }
+  .top-nav { gap: 36px; margin-top: 0; }
+  .top-nav a { font-family: "jimbo-std-expanded", sans-serif; font-size: 22px; letter-spacing: .02em; }
+  .months-back { position: static; margin-bottom: 25px; }
+  .months-back a { font-size: 17px; }
+  .months-page-details summary, .bookmark-group summary { font-size: 18px; }
+  details div { padding-left: 24px; }
+  .writes-index { display: block; }
+  .bookmarks-column { padding-left: 0; }
+  .bookmark-links { padding-left: 24px; }
+  .bookmark-image { max-width: min(240px, 100%) !important; min-width: 0 !important; width: min(240px, 100%) !important; margin: 20px 0 !important; }
+  .post-nav { gap: 25px; font-size: 17px; flex-wrap: wrap; }
+  .footer { clear: both; margin-top: 40px; padding: 0 16px 38px; }
+  .touch { font-size: 16px; }
+  .links { font-size: 16px; overflow-wrap: anywhere; }
+  .about-content { max-width: 100%; overflow-wrap: anywhere; }
+}
