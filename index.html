@@ -6,6 +6,20 @@ layout: default
   OHLUCINDA
 </header>
 
+{% assign home_window = site.data.home_window %}
+{% assign window_text = home_window.text | default: '' | strip %}
+{% assign window_image = home_window.image | default: '' | strip %}
+{% if window_text != '' or window_image != '' %}
+<section class="home-window" aria-label="メッセージ">
+  {% if window_image != '' %}
+    <img class="home-window-image" src="{{ window_image | relative_url }}" alt="{{ home_window.alt | escape }}">
+  {% endif %}
+  {% if window_text != '' %}
+    <div class="home-window-text">{{ window_text | escape | newline_to_br }}</div>
+  {% endif %}
+</section>
+{% endif %}
+
 <nav class="top-nav">
 
   <div>
