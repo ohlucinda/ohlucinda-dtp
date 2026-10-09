@@ -18,6 +18,10 @@ permalink: /bookmarks/
 
   <div class="bookmarks-column">
 
+<a class="bookmark-main-link" href="https://shiroiasa.ohlucinda.com/" target="_blank" rel="noopener">白い朝 / White Morning</a>
+<br>
+<br>
+
 <a class="bookmark-main-link" href="https://lyrics.ohlucinda.com" target="_blank">
   Lyrics</a>
 <img class="bookmark-image" src="{{ '/images/lyrics-img.jpg' | relative_url }}" alt="">
