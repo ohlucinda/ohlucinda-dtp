@@ -86,7 +86,7 @@ and page.url != "/bookmarks/" %}
 
 {% endif %}
 
-{% unless page.url == '/months/' %}
+{% unless page.url == '/months/' or page.url == '/' %}
 
 <div class="footer {% if page.url != '/' %}post-footer{% endif %}">
 
