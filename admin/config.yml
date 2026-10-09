@@ -1,0 +1,45 @@
+backend:
+  name: github
+  repo: ohlucinda/ohlucinda-dtp
+  branch: main
+
+locale: ja
+slug:
+  encoding: unicode
+
+media_folder: images
+public_folder: /images
+
+collections:
+  - name: months
+    label: "Months（ジャーナル）"
+    folder: _posts
+    create: true
+    delete: false
+    extension: md
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "レイアウト"
+        name: layout
+        widget: hidden
+        default: default
+      - label: "タイトル"
+        name: title
+        widget: string
+        required: true
+      - label: "日付（必要に応じて変更）"
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        required: true
+      - label: "公開URL（例：/akai-mono/）"
+        name: permalink
+        widget: string
+        required: true
+      - label: "本文"
+        name: body
+        widget: markdown
+        required: false
