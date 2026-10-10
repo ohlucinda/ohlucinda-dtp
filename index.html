@@ -106,6 +106,6 @@ img,svg,video,iframe{max-width:100%}
   }
   jp.addEventListener('click',()=>setLang('jp'));
   en.addEventListener('click',()=>setLang('en'));
-  setLang('jp');
+  setLang(new URLSearchParams(window.location.search).get('lang')==='en'?'en':'jp');
 })();
 </script></body></html>
