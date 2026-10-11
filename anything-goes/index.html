@@ -159,27 +159,44 @@ const viewer=document.getElementById('viewer');const frame=document.getElementBy
 const workParam='work';const languageParam='work_lang';
 let renderSequence=0;
 const bubblesCache={};
+function renderArtwork(html){
+  // Update the existing iframe document without creating iframe navigation history.
+  const doc=frame.contentDocument;
+  if(!doc)throw new Error('Artwork frame unavailable');
+  doc.open();
+  doc.write(html);
+  doc.close();
+}
 function show(l){
   lang=l;
   const sequence=++renderSequence;
-  frame.removeAttribute('src');
-  if(currentWork==='bubbles'){
-    const url=l==='ja'?'/anything-goes/awa-no-imi/':'/anything-goes/awa-no-imi/en/';
-    frame.title=l==='ja'?'泡の意味':'The Meaning of the Bubbles';
-    frame.srcdoc='';
-    if(!bubblesCache[url])bubblesCache[url]=fetch(url).then(response=>{if(!response.ok)throw new Error('Artwork unavailable');return response.text()}).catch(error=>{delete bubblesCache[url];throw error});
-    bubblesCache[url].then(html=>{if(sequence===renderSequence&&currentWork==='bubbles')frame.srcdoc=html}).catch(()=>{if(sequence===renderSequence)frame.srcdoc='<p style="padding:2rem">作品を読み込めませんでした。ページを再読み込みしてください。</p>'});
-  }else{
-    frame.srcdoc=l==='ja'?original:english;
-    frame.title=l==='ja'?'色を食べる':'Eating Color';
-  }
   ja.className=l==='ja'?'active':'inactive';
   en.className=l==='en'?'active':'inactive';
+  frame.title=currentWork==='bubbles'
+    ?(l==='ja'?'泡の意味':'The Meaning of the Bubbles')
+    :(l==='ja'?'色を食べる':'Eating Color');
+  if(currentWork==='bubbles'){
+    const url=l==='ja'?'/anything-goes/awa-no-imi/':'/anything-goes/awa-no-imi/en/';
+    renderArtwork('<!doctype html><html lang="'+l+'"><meta charset="utf-8"><body style="margin:0;background:#fff8ed;color:#544331;font:16px Georgia,serif;padding:3rem">Loading artwork…</body></html>');
+    if(!bubblesCache[url]){
+      bubblesCache[url]=fetch(url).then(response=>{
+        if(!response.ok)throw new Error('Artwork unavailable: '+response.status);
+        return response.text();
+      }).catch(error=>{delete bubblesCache[url];throw error});
+    }
+    bubblesCache[url].then(html=>{
+      if(sequence===renderSequence&&currentWork==='bubbles')renderArtwork(html);
+    }).catch(()=>{
+      if(sequence===renderSequence)renderArtwork('<!doctype html><html lang="ja"><meta charset="utf-8"><body style="padding:2rem;font:16px sans-serif">作品を読み込めませんでした。ページを再読み込みしてください。</body></html>');
+    });
+  }else{
+    renderArtwork(l==='ja'?original:english);
+  }
 }
 function workUrl(work,l){const url=new URL(location.href);if(work){url.searchParams.set(workParam,work);url.searchParams.set(languageParam,l)}else{url.searchParams.delete(workParam);url.searchParams.delete(languageParam)}return url.pathname+url.search+url.hash}
 function syncUrl(open,l){history.replaceState(history.state,'',workUrl(open?currentWork:null,l))}
 function openWork(l,updateUrl=true,work='eating-color'){currentWork=work;if(updateUrl)history.pushState({anythingGoesWork:true},'',workUrl(work,l));show(l);viewer.classList.add('open');viewer.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
-function hideWork(){++renderSequence;viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');document.body.style.overflow='';frame.removeAttribute('src');frame.srcdoc=''}
+function hideWork(){++renderSequence;viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');document.body.style.overflow='';renderArtwork('<!doctype html><html><body></body></html>')}
 function closeWork(){if(history.state&&history.state.anythingGoesWork){history.back()}else{hideWork();syncUrl(false,lang)}}
 function restoreWorkFromUrl(){const params=new URLSearchParams(location.search);const work=params.get(workParam);if(['eating-color','bubbles'].includes(work)){openWork(params.get(languageParam)==='en'?'en':'ja',false,work)}else{hideWork()}}
 document.getElementById('open').addEventListener('click',()=>openWork('ja'));document.getElementById('open-bubbles').addEventListener('click',()=>openWork('ja',true,'bubbles'));
