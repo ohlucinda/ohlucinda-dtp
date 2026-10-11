@@ -154,6 +154,50 @@ html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--in
 .toolbar .lang-separator{color:#8c807b}
 .toolbar #back{margin-left:auto}
 @media(max-width:650px){.toolbar{padding:8px 20px}.toolbar .langs{gap:7px}}
+
+/* Consistent site navigation: same position, type and spacing. */
+.site-navigation-header{
+  box-sizing:border-box!important;
+  width:calc(min(100vw,1190px) - 2 * var(--home-navigation-edge))!important;
+  margin-top:0!important;
+  padding:30px 0 15px!important;
+  min-height:66px!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+}
+.site-navigation-header .nav,
+.site-navigation-header .nav-right,
+.site-navigation-header .topright,
+.site-navigation-header .language-nav,
+.site-navigation-header > .home{
+  position:static!important;
+  top:auto!important;
+  margin-top:0!important;
+  align-items:center!important;
+  font:400 14px/1.5 'adobe-caslon-pro',Georgia,serif!important;
+  letter-spacing:.02em!important;
+}
+.site-navigation-header .active-language,
+.site-navigation-header .active-lang{
+  font-weight:400!important;
+  text-decoration:underline!important;
+  text-underline-offset:5px!important;
+}
+.site-navigation-header .home-return,
+.site-navigation-header .home-nav,
+.site-navigation-header #jem-home-link{
+  margin-left:20px!important;
+}
+@media(max-width:560px){
+  .site-navigation-header{padding:23px 0 12px!important;min-height:58px!important}
+  .site-navigation-header .home-return,
+  .site-navigation-header .home-nav,
+  .site-navigation-header #jem-home-link{margin-left:12px!important}
+}
+.top.site-navigation-header{margin-top:-23px!important}
+.toolbar{justify-content:flex-end!important}
+.toolbar .langs{order:0!important}
+.toolbar #back{order:1!important;margin-left:20px!important}
 </style></head><body>
 <div class="shell">
  <header class="top site-unified-header site-navigation-header"><a class="home" href="https://ohlucinda.com/">HOME</a></header>
