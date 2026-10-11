@@ -107,8 +107,15 @@ html[lang="en"] body,html[lang="en"] .switch,html[lang="en"] .plot p,html[lang="
     const jemLinks=document.querySelectorAll('.jem-links a');
     for(const a of jemLinks) if(a.textContent.includes('About Je'))a.href=l==='jp'?'/about-jem/ja/':'/about-jem/en/';
   }
-  jp.addEventListener('click',()=>setLang('jp'));
-  en.addEventListener('click',()=>setLang('en'));
+  function chooseLang(l){
+    const url=new URL(window.location.href);
+    if(l==='en')url.searchParams.set('lang','en');
+    else url.searchParams.delete('lang');
+    window.history.replaceState(null,'',url.pathname+url.search+url.hash);
+    setLang(l);
+  }
+  jp.addEventListener('click',()=>chooseLang('jp'));
+  en.addEventListener('click',()=>chooseLang('en'));
   setLang(new URLSearchParams(window.location.search).get('lang')==='en'?'en':'jp');
 })();
 </script></body></html>
