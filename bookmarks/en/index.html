@@ -33,10 +33,7 @@ body,.mast a,.back,h1,h2,.lead,.content,.desc,.source,.foot{font-family:'adobe-c
 .mast{padding-top:23px}
 .mast .nav-right{font-family:'adobe-caslon-pro',Georgia,serif;line-height:1.5}
 
-/* Shared HOME header geometry: same viewport-relative left/right edges. */
-.mast{box-sizing:border-box;width:min(1150px,calc(100vw - 40px));max-width:none;position:relative;left:50%;transform:translateX(-50%);margin-left:0;margin-right:0;padding-top:23px}
-.mast{align-items:flex-start}
-.mast .nav,.mast .nav-right{padding-top:5px}
+
 
 /* Shared site header: identical viewport edges, vertical placement and type to HOME.
    Page-specific content containers and artwork remain untouched. */
@@ -118,8 +115,26 @@ body,.mast a,.back,h1,h2,.lead,.content,.desc,.source,.foot{font-family:'adobe-c
 /* Bookmarks only: no masthead logo; smaller page heading. */
 .mast.site-unified-header{justify-content:flex-end!important}
 .intro h1{font-size:clamp(42px,5vw,56px)}
+
+/* Shared navigation geometry: the exact responsive right edge of HOME.
+   This changes header positioning only, not the page content containers. */
+:root{--home-navigation-edge:clamp(22px,5vw,76px)}
+@media(max-width:800px){:root{--home-navigation-edge:clamp(18px,4vw,32px)}}
+@media(max-width:640px){:root{--home-navigation-edge:20px}}
+.site-navigation-header{
+ box-sizing:border-box!important;
+ width:calc(min(100vw,1190px) - 2 * var(--home-navigation-edge))!important;
+ max-width:none!important;
+ position:relative!important;
+ left:50%!important;
+ transform:translateX(-50%)!important;
+ margin-left:0!important;
+ margin-right:0!important;
+}
+.site-navigation-header .nav-right{position:relative;top:clamp(7px,.9vw,11px)}
+@media(max-width:480px){.site-navigation-header .nav-right{top:5px}}
 </style><link rel="stylesheet" href="https://use.typekit.net/qsa5fag.css"/></head><body>
-<div class="wrap"><nav aria-label="Navigation" class="mast site-unified-header"><div class="nav-right"><a class="back" href="/bookmarks/">日本語</a><span class="lang-sep"> / </span><span class="back active-lang">English</span><a class="back home-nav" href="/?lang=en">HOME</a></div></nav>
+<div class="wrap"><nav aria-label="Navigation" class="mast site-unified-header site-navigation-header"><div class="nav-right"><a class="back" href="/bookmarks/">日本語</a><span class="lang-sep"> / </span><span class="back active-lang">English</span><a class="back home-nav" href="/?lang=en">HOME</a></div></nav>
 <header class="intro"><h1>Bookmarks</h1><p class="lead">A collection of places and things connected to my work.</p></header>
 <main>
 <section aria-labelledby="places"><h2 id="places">Works &amp; Places</h2><div class="content link-grid">
