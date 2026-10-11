@@ -19,10 +19,7 @@
 @media(max-width:680px){.wrap{padding-top:23px}}
 .topright{font-family:'adobe-caslon-pro',Georgia,serif}
 
-/* Shared HOME header geometry: same viewport-relative left/right edges. */
-.top{box-sizing:border-box;width:min(1150px,calc(100vw - 40px));max-width:none;position:relative;left:50%;transform:translateX(-50%);margin-left:0;margin-right:0;padding-top:23px}
-.top{align-items:flex-start}
-.top .topright,.top > .home{padding-top:5px}
+
 
 /* Shared site header: identical viewport edges, vertical placement and type to HOME.
    Page-specific content containers and artwork remain untouched. */
@@ -100,8 +97,26 @@
  .site-unified-header .home-return,.site-unified-header .home-nav,
  .site-unified-header #jem-home-link{margin-left:8px!important}
 }
+
+/* Shared navigation geometry: the exact responsive right edge of HOME.
+   This changes header positioning only, not the page content containers. */
+:root{--home-navigation-edge:clamp(22px,5vw,76px)}
+@media(max-width:800px){:root{--home-navigation-edge:clamp(18px,4vw,32px)}}
+@media(max-width:640px){:root{--home-navigation-edge:20px}}
+.site-navigation-header{
+ box-sizing:border-box!important;
+ width:calc(min(100vw,1190px) - 2 * var(--home-navigation-edge))!important;
+ max-width:none!important;
+ position:relative!important;
+ left:50%!important;
+ transform:translateX(-50%)!important;
+ margin-left:0!important;
+ margin-right:0!important;
+}
+.site-navigation-header .topright{position:relative;top:-22px}
+@media(max-width:480px){.site-navigation-header .topright{top:-28px}}
 </style></head>
-<body><div class="wrap"><header class="top site-unified-header"><a class="brand site-unified-brand" href="/?lang=en">OHLUCINDA</a><div class="topright"><a class="home" href="/detour/" lang="ja">日本語</a><span class="lang-separator">/</span><span class="active-language">English</span><a class="home home-return" href="/?lang=en">HOME</a></div></header>
+<body><div class="wrap"><header class="top site-unified-header site-navigation-header"><a class="brand site-unified-brand" href="/?lang=en">OHLUCINDA</a><div class="topright"><a class="home" href="/detour/" lang="ja">日本語</a><span class="lang-separator">/</span><span class="active-language">English</span><a class="home home-return" href="/?lang=en">HOME</a></div></header>
 <main><section class="hero"><div class="eye">OHLUCINDA / DETOURS</div><h1>Detours</h1><p>One work leads to another. A line in a song points somewhere unexpected. Nagi and Noah each follow what catches their attention, in their own way.</p></section>
 <nav class="paths" aria-label="Detour editors"><section class="path"><div class="name">NAGI</div><h2><a href="/detour/nagi/">Editor's Detour</a></h2><p>Nagi wanders among the writing, photographs and music, pausing wherever something catches his eye.</p><p class="note">Articles currently in Japanese.</p><a class="go" href="/detour/nagi/">Explore Nagi's detours ↗</a></section>
 <section class="path"><div class="name">NOAH</div><h2><a href="/detour/noah/">Found Connections</a></h2><p>Noah notices threads between songs and words, both their similarities and their differences.</p><a class="go" href="/detour/noah/">Read Noah's notes ↗</a></section></nav></main>
