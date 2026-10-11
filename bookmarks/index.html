@@ -32,6 +32,11 @@
 /* Match HOME navigation vertical rhythm and preserve its existing links. */
 .mast{padding-top:23px}
 .mast .nav-right{font-family:'adobe-caslon-pro',Georgia,serif;line-height:1.5}
+
+/* Shared HOME header geometry: same viewport-relative left/right edges. */
+.mast{box-sizing:border-box;width:min(1150px,calc(100vw - 40px));max-width:none;position:relative;left:50%;transform:translateX(-50%);margin-left:0;margin-right:0;padding-top:23px}
+.mast{align-items:flex-start}
+.mast .nav,.mast .nav-right{padding-top:5px}
 </style><link rel="stylesheet" href="https://use.typekit.net/qsa5fag.css"/></head><body>
 <div class="wrap"><nav aria-label="Navigation" class="mast"><a href="/?lang=ja">OHLUCINDA</a><div class="nav-right"><span class="back active-lang">日本語</span><span class="lang-sep"> / </span><a class="back" href="/bookmarks/en/">English</a><a class="back home-nav" href="/?lang=ja">HOME</a></div></nav>
 <header class="intro"><h1>Bookmarks</h1><p class="lead">私に関連するものを、ここに集めています。</p></header>
