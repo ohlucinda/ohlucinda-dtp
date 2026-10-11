@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="{% if page.lang %}{{ page.lang }}{% else %}ja{% endif %}">
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://use.typekit.net/qsa5fag.css">
@@ -22,10 +22,24 @@ OHLUCINDA
       title="OHLUCINDA Feed"
       href="https://ohlucinda.com/feed.xml">
   
-  <meta property="og:title" content="OHLUCINDA">
-  <meta name="description" content="Words, music, images, and experiments by OHLUCINDA">
-  <meta property="og:image" content="https://ohlucinda.com/images/OH-og-b.jpg">
-  <meta property="og:type" content="website">
+  {% assign page_description = page.description | default: page.excerpt | default: '日女の文章、音楽、歌詞、写真などの作品を掲載するOHLUCINDA。' | strip_html | strip_newlines | truncate: 155 %}
+  {% assign canonical_url = page.url | absolute_url %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="description" content="{{ page_description | escape }}">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta property="og:site_name" content="OHLUCINDA">
+  <meta property="og:locale" content="{% if page.lang == 'en' %}en_US{% else %}ja_JP{% endif %}">
+  <meta property="og:title" content="{{ page.title | default: 'OHLUCINDA' | escape }} | OHLUCINDA">
+  <meta property="og:description" content="{{ page_description | escape }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:image" content="{{ page.image | default: '/images/OH-og-b.jpg' | absolute_url }}">
+  <meta property="og:image:alt" content="OHLUCINDA">
+  <meta property="og:type" content="{% if page.date %}article{% else %}website{% endif %}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.title | default: 'OHLUCINDA' | escape }} | OHLUCINDA">
+  <meta name="twitter:description" content="{{ page_description | escape }}">
+  <meta name="twitter:image" content="{{ page.image | default: '/images/OH-og-b.jpg' | absolute_url }}">
+
   
 
   
