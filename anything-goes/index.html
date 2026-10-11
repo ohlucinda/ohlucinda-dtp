@@ -52,9 +52,86 @@ html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--in
 .top{box-sizing:border-box;width:min(1150px,calc(100vw - 40px));max-width:none;position:relative;left:50%;transform:translateX(-50%);margin-left:0;margin-right:0;padding-top:23px}
 .top{align-items:flex-start}
 .top .topright,.top > .home{padding-top:5px}
+
+/* Shared site header: identical viewport edges, vertical placement and type to HOME.
+   Page-specific content containers and artwork remain untouched. */
+.site-unified-header{
+ box-sizing:border-box!important;
+ width:calc(100vw - 2 * clamp(20px,4vw,36px))!important;
+ max-width:none!important;
+ min-height:0!important;
+ position:relative!important;
+ left:50%!important;
+ transform:translateX(-50%)!important;
+ margin:0!important;
+ padding:30px 0 23px!important;
+ display:flex!important;
+ flex-direction:row!important;
+ justify-content:space-between!important;
+ align-items:center!important;
+ gap:20px!important;
+ border:0!important;
+ background:transparent!important;
+}
+.site-unified-header .site-unified-brand{
+ display:block!important;
+ flex:0 0 auto!important;
+ font-family:'jimbo-std-expanded',sans-serif!important;
+ font-size:clamp(26px,3.1vw,41px)!important;
+ font-weight:400!important;
+ line-height:1.2!important;
+ letter-spacing:.02em!important;
+ text-decoration:none!important;
+ border:0!important;
+ color:#171717!important;
+ padding:0!important;
+ margin:0!important;
+}
+.site-unified-header .nav,.site-unified-header .nav-right,
+.site-unified-header .language-nav,.site-unified-header .topright,
+.site-unified-header > .home{
+ display:flex!important;
+ align-items:center!important;
+ justify-content:flex-end!important;
+ flex-wrap:wrap!important;
+ gap:9px!important;
+ margin:0!important;
+ padding:0!important;
+ font-family:'adobe-caslon-pro',Georgia,serif!important;
+ font-size:14px!important;
+ font-weight:400!important;
+ line-height:1.5!important;
+ letter-spacing:.02em!important;
+}
+.site-unified-header .nav a,.site-unified-header .nav span,
+.site-unified-header .nav-right a,.site-unified-header .nav-right span,
+.site-unified-header .language-nav a,.site-unified-header .language-nav span,
+.site-unified-header .topright a,.site-unified-header .topright span,
+.site-unified-header > .home{
+ font-family:'adobe-caslon-pro',Georgia,serif!important;
+ font-size:14px!important;
+ font-weight:400!important;
+ line-height:1.5!important;
+ letter-spacing:.02em!important;
+ white-space:nowrap!important;
+}
+.site-unified-header .home-return,.site-unified-header .home-nav,
+.site-unified-header #jem-home-link{margin-left:20px!important}
+.site-unified-header .extra-link{margin-left:18px!important}
+.site-unified-header .active-language,.site-unified-header .active-lang{
+ text-decoration:underline!important;text-underline-offset:5px!important;
+}
+@media(max-width:560px){
+ .site-unified-header{gap:10px!important;align-items:flex-start!important;padding-top:23px!important}
+ .site-unified-header .site-unified-brand{font-size:26px!important}
+ .site-unified-header .nav,.site-unified-header .nav-right,
+ .site-unified-header .language-nav,.site-unified-header .topright{gap:6px!important}
+ .site-unified-header .home-return,.site-unified-header .home-nav,
+ .site-unified-header #jem-home-link{margin-left:8px!important}
+}
 </style></head><body>
 <div class="shell">
- <header class="top"><a class="brand" href="https://ohlucinda.com/">OHLUCINDA</a><a class="home" href="https://ohlucinda.com/">HOME</a></header>
+ <header class="top site-unified-header"><a class="brand site-unified-brand" href="https://ohlucinda.com/">OHLUCINDA</a><a class="home" href="https://ohlucinda.com/">HOME</a></header>
  <div class="heading"><div><h1>Anything Goes.</h1><p class="subtitle">なんでも作品</p></div><div class="side">A place for<br>whatever comes to be.</div></div>
  <main class="collection" aria-label="作品一覧"><button class="work" id="open"><span class="art" aria-hidden="true"></span><span class="work-detail"><span class="edition">Words · 01</span><span class="workname">色を食べる</span><span class="sub">Eating Color</span><span class="description">This is not fiction. This is something real and important about who I am.</span><span class="enter">作品を開く / Open work</span></span></button></main>
  <footer class="foot"><span>OHLUCINDA</span><span>Anything Goes</span></footer>
