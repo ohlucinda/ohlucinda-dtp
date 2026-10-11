@@ -149,6 +149,8 @@ html[lang="en"] .section-head span{
     ['work-title','work-author','work-desc','work-cta'].forEach((id,i)=>document.getElementById(id).textContent=m[i]);
     document.getElementById('work-cta').href=m[4];
     document.getElementById('hero-link').href=m[4];
+    const releasesLink=document.querySelector('.jem-links a[href^="https://medium.ohlucinda.com/"]');
+    if(releasesLink)releasesLink.href=l==='en'?'https://medium.ohlucinda.com/?from_lang=en':'https://medium.ohlucinda.com/?from_lang=ja';
     const gemLink=document.querySelector('.garden a[href^="https://gem.ohlucinda.com/"]');
     if(gemLink)gemLink.href=l==='en'?'https://gem.ohlucinda.com/?from_lang=en':'https://gem.ohlucinda.com/?from_lang=ja';
     document.getElementById('bookmarks-home-link').href=l==='jp'?'/bookmarks/':'/bookmarks/en/';
