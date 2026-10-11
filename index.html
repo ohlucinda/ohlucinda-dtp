@@ -119,6 +119,7 @@ html[lang="en"] .section-head span{
   const jp=document.getElementById('jp'), en=document.getElementById('en');
   function setLang(l){
     document.documentElement.lang=l==='jp'?'ja':'en';
+    try{sessionStorage.setItem('ohlucinda-home-language',l==='en'?'en':'jp');}catch(e){}
     const english=l==='en';
     const meta={
       title: english?'OHLUCINDA | Absolute West':'OHLUCINDA | Absolute West',
@@ -163,6 +164,9 @@ html[lang="en"] .section-head span{
   }
   jp.addEventListener('click',()=>chooseLang('jp'));
   en.addEventListener('click',()=>chooseLang('en'));
-  setLang(new URLSearchParams(window.location.search).get('lang')==='en'?'en':'jp');
+  let remembered='jp';
+  try{remembered=sessionStorage.getItem('ohlucinda-home-language')==='en'?'en':'jp';}catch(e){}
+  const requested=new URLSearchParams(window.location.search).get('lang');
+  setLang(requested==='en'?'en':requested==='ja'||requested==='jp'?'jp':remembered);
 })();
 </script></body></html>
