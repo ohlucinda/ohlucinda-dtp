@@ -463,3 +463,13 @@ and (orientation: landscape) {
   }
 
 }
+
+/* Keep the Months back link above the heading on narrow screens. */
+@media (max-width: 699px) {
+  .months-back {
+    position: static;
+    margin-bottom: 28px;
+    line-height: 1.4;
+  }
+  .months-back a { display: inline-block; }
+}
