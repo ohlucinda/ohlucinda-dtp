@@ -133,6 +133,46 @@ body,.mast a,.back,h1,h2,.lead,.content,.desc,.source,.foot{font-family:'adobe-c
 }
 .site-navigation-header .nav-right{position:relative;top:clamp(7px,.9vw,11px)}
 @media(max-width:480px){.site-navigation-header .nav-right{top:5px}}
+
+/* Consistent site navigation: same position, type and spacing. */
+.site-navigation-header{
+  box-sizing:border-box!important;
+  width:calc(min(100vw,1190px) - 2 * var(--home-navigation-edge))!important;
+  margin-top:0!important;
+  padding:30px 0 15px!important;
+  min-height:66px!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+}
+.site-navigation-header .nav,
+.site-navigation-header .nav-right,
+.site-navigation-header .topright,
+.site-navigation-header .language-nav,
+.site-navigation-header > .home{
+  position:static!important;
+  top:auto!important;
+  margin-top:0!important;
+  align-items:center!important;
+  font:400 14px/1.5 'adobe-caslon-pro',Georgia,serif!important;
+  letter-spacing:.02em!important;
+}
+.site-navigation-header .active-language,
+.site-navigation-header .active-lang{
+  font-weight:400!important;
+  text-decoration:underline!important;
+  text-underline-offset:5px!important;
+}
+.site-navigation-header .home-return,
+.site-navigation-header .home-nav,
+.site-navigation-header #jem-home-link{
+  margin-left:20px!important;
+}
+@media(max-width:560px){
+  .site-navigation-header{padding:23px 0 12px!important;min-height:58px!important}
+  .site-navigation-header .home-return,
+  .site-navigation-header .home-nav,
+  .site-navigation-header #jem-home-link{margin-left:12px!important}
+}
 </style><link rel="stylesheet" href="https://use.typekit.net/qsa5fag.css"/></head><body>
 <div class="wrap"><nav aria-label="Navigation" class="mast site-unified-header site-navigation-header"><div class="nav-right"><a class="back" href="/bookmarks/">日本語</a><span class="lang-sep"> / </span><span class="back active-lang">English</span><a class="back home-nav" href="/?lang=en">HOME</a></div></nav>
 <header class="intro"><h1>Bookmarks</h1><p class="lead">A collection of places and things connected to my work.</p></header>
