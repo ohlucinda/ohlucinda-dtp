@@ -144,6 +144,7 @@ html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--in
 }
 .site-navigation-header > .home{position:relative;top:-24px;margin-left:auto!important}
 @media(max-width:480px){.site-navigation-header > .home{top:-27px}}
+.art-sheets{background:linear-gradient(165deg,#fff9ed 0%,#f1e9f0 28%,#cbdce8 66%,#91b9c8 100%)}
 .art-bubbles{background:radial-gradient(circle at 20% 34%,rgba(255,246,174,.82) 0 15%,transparent 43%),linear-gradient(145deg,#fff1a9 0%,#f8cf68 48%,#e99142 100%)}.art-bubbles:before{content:"";position:absolute;inset:15% 25%;border-radius:50%;border:2px solid rgba(255,255,255,.6);box-shadow:38px -18px 0 -12px rgba(255,255,255,.5),-32px 35px 0 -15px rgba(255,255,255,.5)}/* Match language navigation across OHLUCINDA pages. */
 .toolbar{padding:8px var(--home-navigation-edge);align-items:center}
 .toolbar .langs{display:flex;align-items:center;gap:9px}
@@ -283,7 +284,7 @@ html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--in
 <div class="shell">
  <header class="top site-unified-header site-navigation-header"><a class="home" href="https://ohlucinda.com/">HOME</a></header>
  <div class="heading"><div><h1>Anything Goes.</h1><p class="subtitle">なんでも作品</p></div><div class="side">A place for the unexpected.</div></div>
- <main class="collection" aria-label="作品一覧"><button class="work" id="open"><span class="art" aria-hidden="true"></span><span class="work-detail"><span class="edition">Words · 01</span><span class="workname">色を食べる</span><span class="sub">Eating Color</span><span class="description">This is not fiction. This is something real and important about who I am.</span><span class="enter">作品を開く / Open work</span></span></button><button class="work" id="open-bubbles"><span class="art art-bubbles" aria-hidden="true"></span><span class="work-detail"><span class="edition">Words · 02</span><span class="workname">泡の意味</span><span class="sub">The Meaning of the Bubbles</span><span class="description">A goldfish, its bubbles, and someone who asks what they mean.</span><span class="enter">作品を開く / Open work</span></span></button></main>
+ <main class="collection" aria-label="作品一覧"><button class="work" id="open"><span class="art" aria-hidden="true"></span><span class="work-detail"><span class="edition">Words · 01</span><span class="workname">色を食べる</span><span class="sub">Eating Color</span><span class="description">This is not fiction. This is something real and important about who I am.</span><span class="enter">作品を開く / Open work</span></span></button><button class="work" id="open-bubbles"><span class="art art-bubbles" aria-hidden="true"></span><span class="work-detail"><span class="edition">Words · 02</span><span class="workname">泡の意味</span><span class="sub">The Meaning of the Bubbles</span><span class="description">A goldfish, its bubbles, and someone who asks what they mean.</span><span class="enter">作品を開く / Open work</span></span></button><button class="work" id="open-sheets"><span class="art art-sheets" aria-hidden="true"></span><span class="work-detail"><span class="edition">Words · 03</span><span class="workname">シーツの記憶</span><span class="sub">The Memory of the Blanket</span><span class="description">A memory of being small, remembered after becoming enormous.</span><span class="enter">作品を開く / Open work</span></span></button></main>
  <footer class="foot"><span>© OHLUCINDA</span><span>Anything Goes</span></footer>
 </div>
 <section class="viewer" id="viewer" aria-label="作品ページ" aria-hidden="true"><div class="toolbar"><button id="back">Anything Goes</button><div class="langs" aria-label="Language"><button id="ja" class="active">日本語</button><span class="lang-separator" aria-hidden="true">/</span><button id="en" class="inactive">English</button></div><a class="viewer-home-return" href="https://ohlucinda.com/">HOME</a></div><iframe id="frame" title="色を食べる" sandbox="allow-same-origin"></iframe><footer class="viewer-footer">© OHLUCINDA</footer></section>
@@ -309,9 +310,13 @@ function show(l){
   en.className=l==='en'?'active':'inactive';
   frame.title=currentWork==='bubbles'
     ?(l==='ja'?'泡の意味':'The Meaning of the Bubbles')
+    :currentWork==='sheets-memory'
+    ?(l==='ja'?'シーツの記憶':'The Memory of the Blanket')
     :(l==='ja'?'色を食べる':'Eating Color');
-  if(currentWork==='bubbles'){
-    const url=l==='ja'?'/anything-goes/awa-no-imi/':'/anything-goes/awa-no-imi/en/';
+  if(currentWork==='bubbles'||currentWork==='sheets-memory'){
+    const url=currentWork==='sheets-memory'
+      ?(l==='ja'?'/anything-goes/sheets-memory/':'/anything-goes/sheets-memory/en/')
+      :(l==='ja'?'/anything-goes/awa-no-imi/':'/anything-goes/awa-no-imi/en/');
     renderArtwork('<!doctype html><html lang="'+l+'"><meta charset="utf-8"><body style="margin:0;background:#fff8ed;color:#544331;font:16px Georgia,serif;padding:3rem">Loading artwork…</body></html>');
     if(!bubblesCache[url]){
       bubblesCache[url]=fetch(url).then(response=>{
@@ -320,7 +325,7 @@ function show(l){
       }).catch(error=>{delete bubblesCache[url];throw error});
     }
     bubblesCache[url].then(html=>{
-      if(sequence===renderSequence&&currentWork==='bubbles')renderArtwork(html);
+      if(sequence===renderSequence&&['bubbles','sheets-memory'].includes(currentWork))renderArtwork(html);
     }).catch(()=>{
       if(sequence===renderSequence)renderArtwork('<!doctype html><html lang="ja"><meta charset="utf-8"><body style="padding:2rem;font:16px sans-serif">作品を読み込めませんでした。ページを再読み込みしてください。</body></html>');
     });
@@ -333,8 +338,8 @@ function syncUrl(open,l){history.replaceState(history.state,'',workUrl(open?curr
 function openWork(l,updateUrl=true,work='eating-color'){currentWork=work;if(updateUrl)history.pushState({anythingGoesWork:true},'',workUrl(work,l));show(l);viewer.classList.add('open');viewer.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
 function hideWork(){++renderSequence;viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');document.body.style.overflow='';renderArtwork('<!doctype html><html><body></body></html>')}
 function closeWork(){if(history.state&&history.state.anythingGoesWork){history.back()}else{hideWork();syncUrl(false,lang)}}
-function restoreWorkFromUrl(){const params=new URLSearchParams(location.search);const work=params.get(workParam);if(['eating-color','bubbles'].includes(work)){openWork(params.get(languageParam)==='en'?'en':'ja',false,work)}else{hideWork()}}
-document.getElementById('open').addEventListener('click',()=>openWork('ja'));document.getElementById('open-bubbles').addEventListener('click',()=>openWork('ja',true,'bubbles'));
+function restoreWorkFromUrl(){const params=new URLSearchParams(location.search);const work=params.get(workParam);if(['eating-color','bubbles','sheets-memory'].includes(work)){openWork(params.get(languageParam)==='en'?'en':'ja',false,work)}else{hideWork()}}
+document.getElementById('open').addEventListener('click',()=>openWork('ja'));document.getElementById('open-bubbles').addEventListener('click',()=>openWork('ja',true,'bubbles'));document.getElementById('open-sheets').addEventListener('click',()=>openWork('ja',true,'sheets-memory'));
 document.getElementById('back').addEventListener('click',closeWork);
 ja.addEventListener('click',()=>{show('ja');syncUrl(true,'ja')});en.addEventListener('click',()=>{show('en');syncUrl(true,'en')});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&viewer.classList.contains('open'))closeWork()});
