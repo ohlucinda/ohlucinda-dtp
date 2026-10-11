@@ -74,6 +74,7 @@ font-family: -apple-system, BlinkMacSystemFont,
 3. 各作品は `anything-goes/<slug>/index.html` と `anything-goes/<slug>/en/index.html` に置く（例: `awa-no-imi`, `sheets-memory`）。
 4. 日英HTMLの背景、画像、構図、h1/本文のフォント種類・サイズ・太さ・余白・行間・文字間隔とメディアクエリを**項目ごとに照合**する。作品固有の意匠は保ち、日英で一致させる。本文言語と `<html lang>`、`<title>` は適切に分ける。
 5. `anything-goes/index.html` の `<main class="collection">` に新しいカードを追加。既存の順序を壊さず、作品番号 `Words · 0N`、日本語名、英語名、説明、サムネイル用のアート指定を設定する。勝手な紹介文を作品内容に断定的に付けない。
+   **サムネイルはナギが制作する。** 既存のAnything Goesのサムネイルをユーザーは気に入っているので、新作でもその雰囲気・色彩感・抽象性・一覧に並んだときの統一感を大切にして制作する。毎回同じ絵柄にする必要はなく、作品ごとの個性を出しながら、Anything Goes全体の空気に自然になじませる。既存サムネイルを確認してから作り、ユーザーから変更希望があればそれを優先する。
 6. ビューアJSで新作の識別子を扱う。現行では `openWork`、`show(l)`、`workUrl`、`restoreWorkFromUrl`、`renderArtwork` 等を確認する。作品カードのクリック、`?work=<slug>&work_lang=ja|en`、言語切替、戻る、履歴、再読み込みに対応させる。
 7. ビューアは作品HTMLを `fetch` してiframeへ描画する方式。両言語のパスが正しいか確認する。既存の「色を食べる」「泡の意味」などのルートを壊さない。
 8. **共通ナビを検証**。「Anything Goes　日本語 / English　HOME」の順序、文字間隔、HOME右端と高さのHOME基準への一致を、幅の異なる画面で確認する。
