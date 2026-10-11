@@ -137,5 +137,7 @@
     <p><a href="/detour/">← Detours</a> · <a href="https://ohlucinda.com/">OHLUCINDA ↗</a></p>
   </footer>
 </main>
+<script>/* Keep HOME language when returning from a linked page. */
+(function(){try{var l=sessionStorage.getItem('ohlucinda-home-language');if(l==='en'){document.querySelectorAll('a[href="/"],a[href="https://ohlucinda.com/"]').forEach(function(a){a.href='/?lang=en';});}}catch(e){}})();</script>
 </body>
 </html>
