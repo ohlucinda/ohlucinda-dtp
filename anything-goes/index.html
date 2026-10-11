@@ -42,6 +42,11 @@ html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--in
 
 /* Unified navigation sizing */
 .switch,.switch button,.nav-right,.nav-right a,.nav-right span,.mast .nav,.mast .nav a,header nav,header nav a,.top .home,.topright .home,.toolbar .langs button{font-size:14px!important;line-height:1.5}
+
+/* Match HOME's top navigation offset; leave artwork viewer untouched. */
+.shell{padding-top:23px}
+@media(max-width:650px){.shell{padding-top:23px}}
+.top .home{font-family:'adobe-caslon-pro',Georgia,serif}
 </style></head><body>
 <div class="shell">
  <header class="top"><a class="brand" href="https://ohlucinda.com/">OHLUCINDA</a><a class="home" href="https://ohlucinda.com/">HOME</a></header>
