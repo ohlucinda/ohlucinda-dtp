@@ -34,6 +34,11 @@
 .wrap{padding-top:23px}
 @media(max-width:680px){.wrap{padding-top:23px}}
 .topright{font-family:'adobe-caslon-pro',Georgia,serif}
+
+/* Shared HOME header geometry: same viewport-relative left/right edges. */
+.top{box-sizing:border-box;width:min(1150px,calc(100vw - 40px));max-width:none;position:relative;left:50%;transform:translateX(-50%);margin-left:0;margin-right:0;padding-top:23px}
+.top{align-items:flex-start}
+.top .topright,.top > .home{padding-top:5px}
 </style>
 </head>
 <body>
