@@ -154,6 +154,8 @@ html[lang="en"] .section-head span{
     const gemLink=document.querySelector('.garden a[href^="https://gem.ohlucinda.com/"]');
     if(gemLink)gemLink.href=l==='en'?'https://gem.ohlucinda.com/?from_lang=en':'https://gem.ohlucinda.com/?from_lang=ja';
     document.getElementById('bookmarks-home-link').href=l==='jp'?'/bookmarks/':'/bookmarks/en/';
+    const detourLink=document.querySelector('.garden a[href^="/detour/"]');
+    if(detourLink)detourLink.href=l==='jp'?'/detour/':'/detour/en/';
     const about=document.querySelector('.garden a[href^="/about/"]');
     if(about)about.href=l==='jp'?'/about/':'/about/en/';
     const jemLinks=document.querySelectorAll('.jem-links a');
