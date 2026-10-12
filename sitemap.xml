@@ -6,6 +6,7 @@ permalink: /sitemap.xml
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% comment %}Curated public HTML pages. No admin, prototype, drafts, or duplicate alias pages.{% endcomment %}
   <url><loc>{{ '/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/en/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/months/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/about/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/about/en/' | absolute_url | xml_escape }}</loc></url>
