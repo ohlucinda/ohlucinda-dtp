@@ -1,0 +1,32 @@
+---
+layout: null
+permalink: /sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% comment %}Curated public HTML pages. No admin, prototype, drafts, or duplicate alias pages.{% endcomment %}
+  <url><loc>{{ '/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/months/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/about/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/about/en/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/bookmarks/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/bookmarks/en/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/about-jem/ja/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/about-jem/en/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/anything-goes/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/anything-goes/awa-no-imi/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/anything-goes/awa-no-imi/en/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/anything-goes/sheets-memory/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/anything-goes/sheets-memory/en/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/detour/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/detour/en/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/detour/nagi/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/detour/nagi/names/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/detour/nagi/nantonaku/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/detour/nagi/two-truths/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/detour/noah/' | absolute_url | xml_escape }}</loc></url>
+{% comment %}Journal entries use their actual frontmatter permalinks. Jekyll excludes future posts unless enabled.{% endcomment %}
+{% for post in site.posts %}{% unless post.sitemap == false or post.published == false %}
+  <url><loc>{{ post.url | absolute_url | xml_escape }}</loc></url>
+{% endunless %}{% endfor %}
+</urlset>
