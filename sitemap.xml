@@ -15,6 +15,7 @@ permalink: /sitemap.xml
   <url><loc>{{ '/about-jem/ja/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/about-jem/en/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/anything-goes/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/anything-goes/en/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/anything-goes/awa-no-imi/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/anything-goes/awa-no-imi/en/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/anything-goes/sheets-memory/' | absolute_url | xml_escape }}</loc></url>
