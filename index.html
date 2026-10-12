@@ -50,6 +50,8 @@
 .lyrics-word{font:400 clamp(22px,2.2vw,28px)/1.5 var(--serif);text-decoration:underline;text-underline-offset:5px}
 .lyrics-sub{font:400 12px/1.7 var(--serif);letter-spacing:.08em;color:var(--muted);margin-top:8px}
 @media(max-width:640px){.music-row{grid-template-columns:minmax(0,1fr);gap:32px}}
+
+.home-lyric-video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#111;object-fit:contain}
 </style><style>#bookmarks-modal[hidden]{display:none!important}#bookmarks-modal{position:fixed;inset:0;z-index:9999;background:white;display:flex;flex-direction:column}#bookmarks-toolbar{display:flex;align-items:center;gap:18px;padding:14px clamp(18px,4vw,54px);border-bottom:1px solid #ececec;background:white;font:14px system-ui,sans-serif}#bookmarks-close{font-size:14px;cursor:pointer;border:0;background:none;padding:8px 12px 8px 0}#bookmarks-langs{margin-left:auto;display:flex;gap:14px}#bookmarks-langs button{background:none;border:0;padding:6px;cursor:pointer;font:inherit;color:#555}#bookmarks-langs button[aria-pressed=true]{color:#111;text-decoration:underline;text-underline-offset:4px}#bookmarks-iframe{flex:1;width:100%;border:0;background:white}</style></head><body>
 <div class="frame">
 <header class="mast"><h1 class="brand">OHLUCINDA</h1><div aria-label="Language" class="switch"><button class="on" id="jp" type="button">日本語</button> / <button id="en" type="button">English</button></div></header>
@@ -62,10 +64,10 @@
 </article>
 <article aria-label="Hime's window" class="window-card">
 <div class="window-head"><span class="eyebrow">HIME'S WINDOW</span><span class="marker" data-en="Whatever belongs here today" data-jp="いま、ここに置くもの">いま、ここに置くもの</span></div>
-<!-- REPLACEABLE WINDOW CONTENT: replace .live-art with a video, photo, or text. No actual video is embedded in this sample. -->
-<div aria-label="窓の仮表示" class="live-art"><small>LYRIC VIDEO</small><span>なんとなく</span></div>
-<div class="work-copy"><h2 data-en="Nantonaku" data-jp="なんとなく">なんとなく</h2><p data-en="Today's window makes room for a new lyric video. Swap in a video, photograph, or a few words whenever you like." data-jp="今日の窓には、できたばかりのリリックビデオを。ここは映像や写真、一言など、そのとき置きたいものに差し替える場所。">今日の窓には、できたばかりのリリックビデオを。ここは映像や写真、一言など、そのとき置きたいものに差し替える場所。</p></div>
-<div class="live-note" data-en="Preview only. The actual video has not been embedded yet." data-jp="※ 試作のため映像は未埋め込み。現在はイメージ表示です。">※ 試作のため映像は未埋め込み。現在はイメージ表示です。</div>
+<!-- HIME'S WINDOW: なんとなく video -->
+<video class="home-lyric-video" controls playsinline preload="metadata" aria-label="なんとなく リリックビデオ"><source src="/videos/nantonaku.mp4" type="video/mp4">お使いのブラウザでは動画を再生できません。</video>
+<div class="work-copy"><h2 data-en="Nantonaku" data-jp="なんとなく">なんとなく</h2></div>
+
 </article>
 </section>
 <section aria-labelledby="changing-heading" class="changing">
