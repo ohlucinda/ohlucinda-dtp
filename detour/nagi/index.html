@@ -66,9 +66,14 @@
  max-width:none!important;
  text-align:right!important;
 }
+
+/* Mirror the Anything Goes viewer: one language group and separate 20px HOME gap. */
+.ohl-detour-nav{gap:0}
+.ohl-detour-nav .ohl-language-group{display:flex;align-items:center;gap:9px;white-space:nowrap}
+@media(max-width:560px){.ohl-detour-nav .ohl-language-group{gap:6px}}
 </style>
 </head>
-<body><nav class="ohl-detour-nav" aria-label="サイトナビゲーション"><a class="return" href="/detour/">寄り道</a><span class="selected" lang="ja">日本語</span><span>/</span><span class="unavailable" lang="en">English</span><a class="home-return" href="/?lang=ja">HOME</a></nav><div class="wrap">
+<body><nav class="ohl-detour-nav" aria-label="サイトナビゲーション"><a class="return" href="/detour/">寄り道</a><div class="ohl-language-group"><span class="selected" lang="ja">日本語</span><span>/</span><span class="unavailable" lang="en">English</span></div><a class="home-return" href="/?lang=ja">HOME</a></nav><div class="wrap">
 <!-- Keep the established article offset; the single site navigation above handles returning. --><div aria-hidden="true" style="height:22px"></div>
 <main>
 <section class="intro">
