@@ -277,9 +277,14 @@
  max-width:none!important;
  text-align:right!important;
 }
+
+/* Mirror the Anything Goes viewer: one language group and separate 20px HOME gap. */
+.ohl-detour-nav{gap:0}
+.ohl-detour-nav .ohl-language-group{display:flex;align-items:center;gap:9px;white-space:nowrap}
+@media(max-width:560px){.ohl-detour-nav .ohl-language-group{gap:6px}}
 </style>
 </head>
-<body><nav class="ohl-detour-nav" aria-label="サイトナビゲーション"><span class="selected">日本語</span><span class="lang-separator">/</span><a  href="/detour/en/" lang="en">English</a><a class="home-return" href="/">HOME</a></nav>
+<body><nav class="ohl-detour-nav" aria-label="サイトナビゲーション"><div class="ohl-language-group"><span class="selected">日本語</span><span class="lang-separator">/</span><a  href="/detour/en/" lang="en">English</a></div><a class="home-return" href="/">HOME</a></nav>
 <div class="wrap">
 <header class="top site-unified-header site-navigation-header" aria-hidden="true"></header>
 <main>
