@@ -65,9 +65,16 @@
 .other h3 > a,
 .bottom > a,
 #work-cta {
+  /* Keep Lyrics' existing flex layout; allow inline links to transform. */
   transform:translateY(0);
   transition:transform .28s ease;
 }
+
+.changing-title > a,
+.recent > a,
+#about-jem-link,
+.other h3 > a,
+.bottom > a { display:inline-block; }
 @media (hover:hover) and (pointer:fine) {
   .changing-title > a:hover,
   .recent > a:hover,
