@@ -301,9 +301,36 @@ html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--in
 
 /* Copyright size shared across OHLUCINDA pages */
 .foot span:first-child,.viewer-footer{font-size:14px!important}
+
+/* Anything Goes listing language navigation: match the established article viewer. */
+.top.site-navigation-header{gap:0!important}
+.top.site-navigation-header .language-nav{
+ display:flex!important;flex-flow:row nowrap!important;align-items:center!important;justify-content:flex-end!important;
+ gap:9px!important;margin:0!important;padding:0!important;
+ font:400 14px/1.5 'adobe-caslon-pro',Georgia,serif!important;letter-spacing:.02em!important;white-space:nowrap!important;
+}
+.top.site-navigation-header .language-nav > *{
+ font:inherit!important;letter-spacing:inherit!important;white-space:nowrap!important;
+ margin:0!important;padding:0!important;
+}
+.top.site-navigation-header .language-nav .active-language{
+ color:#312c29!important;text-decoration:underline!important;text-underline-offset:5px!important;
+}
+.top.site-navigation-header .language-nav .lang-separator,
+.top.site-navigation-header .language-nav a{color:#8c807b!important;text-decoration:none!important}
+.top.site-navigation-header .language-nav a:hover{text-decoration:underline!important;text-underline-offset:5px!important}
+.top.site-navigation-header > .home.home-return{
+ display:block!important;flex:0 0 auto!important;margin:0 0 0 20px!important;padding:0!important;
+ font:400 14px/1.5 'adobe-caslon-pro',Georgia,serif!important;letter-spacing:.02em!important;
+ text-decoration:none!important;border:0!important;white-space:nowrap!important;color:inherit!important;
+}
+@media(max-width:560px){
+ .top.site-navigation-header .language-nav{gap:6px!important}
+ .top.site-navigation-header > .home.home-return{margin-left:12px!important}
+}
 </style></head><body>
 <div class="shell">
- <header class="top site-unified-header site-navigation-header"><a class="home" href="https://ohlucinda.com/">HOME</a><script>(function(){try{var lang=localStorage.getItem("ohlucinda-home-language");var ref=new URL(document.referrer);if(ref.hostname==="ohlucinda.com"&&(ref.pathname.startsWith("/en/")||ref.searchParams.get("lang")==="en"))lang="en";if(lang==="en")document.querySelector(".top .home").href="https://ohlucinda.com/en/"}catch(e){}})();</script></header>
+ <header class="top site-unified-header site-navigation-header"><nav class="language-nav" aria-label="Language"><span class="active-language" lang="ja" aria-current="page">日本語</span><span class="lang-separator" aria-hidden="true">/</span><a href="/anything-goes/en/" lang="en">English</a></nav><a class="home home-return" href="/?lang=ja">HOME</a></header>
  <div class="heading"><div><h1>Anything Goes.</h1><p class="subtitle">なんでも作品</p></div><div class="side">A place for the unexpected.</div></div>
  <main class="collection" aria-label="作品一覧"><a class="work" id="open" href="/anything-goes/?work=eating-color&amp;work_lang=ja"><span class="art" aria-hidden="true"></span><span class="work-detail"><span class="edition">Words · 01</span><span class="workname">色を食べる</span><span class="description">色そのものが養分になる。</span><span class="enter">作品を開く</span></span></a><a class="work" id="open-bubbles" href="/anything-goes/?work=bubbles&amp;work_lang=ja"><span class="art art-bubbles" aria-hidden="true"></span><span class="work-detail"><span class="edition">Words · 02</span><span class="workname">泡の意味</span><span class="description">金魚と泡と、その意味を尋ねる誰か。</span><span class="enter">作品を開く</span></span></a><a class="work" id="open-sheets" href="/anything-goes/?work=sheets-memory&amp;work_lang=ja"><span class="art art-sheets" aria-hidden="true"></span><span class="work-detail"><span class="edition">Words · 03</span><span class="workname">シーツの記憶</span><span class="description">大きくなってから思い出す、小さかったころの記憶。</span><span class="enter">作品を開く</span></span></a><a class="work" id="open-noah" href="/anything-goes/?work=noa-no-koto-1&amp;work_lang=ja"><span class="art art-noah" aria-hidden="true"></span><span class="work-detail"><span class="edition">Words · 04</span><span class="workname">ノアのこと　一</span><span class="description">窓際の席と、二杯のコーヒー。</span><span class="enter">作品を開く</span></span></a></main>
  <footer class="foot"><span>© OHLUCINDA</span><span>Anything Goes</span></footer>
@@ -379,11 +406,4 @@ ja.addEventListener('click',()=>{show('ja');syncUrl(true,'ja')});en.addEventList
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&viewer.classList.contains('open'))closeWork()});
 window.addEventListener('popstate',restoreWorkFromUrl);
 restoreWorkFromUrl();
-</script><script>
-(function(){
-  var selected='ja';
-  try{selected=localStorage.getItem('ohlucinda-home-language')==='en'?'en':'ja'}catch(e){}
-  var returnUrl=selected==='en'?'https://ohlucinda.com/en/':'https://ohlucinda.com/?lang=ja';
-  document.querySelectorAll('.top a[href="https://ohlucinda.com/"]').forEach(function(a){a.href=returnUrl});
-})();
 </script></body></html>
