@@ -111,9 +111,14 @@ h1{font-family:"jimbo-std-expanded",Georgia,serif;font-weight:400;font-size:clam
 
 /* GET IN TOUCH text size only */
 .footer > a{font-size:14px!important}
+
+/* Exact visual spacing from the Anything Goes article viewer. */
+.site-navigation-header .nav,.site-navigation-header .nav-right{gap:0!important}
+.site-navigation-header .ohl-language-group{display:flex;align-items:center;gap:9px!important;white-space:nowrap}
+@media(max-width:560px){.site-navigation-header .ohl-language-group{gap:6px!important}}
 </style>
 </head><body><div class="frame">
-<header class="mast site-navigation-header"><nav class="nav"><span class="active-language">日本語</span> <span class="lang-separator">/</span> <a href="/about/en/">English</a><a class="home-return" href="/?lang=ja">HOME</a></nav></header>
+<header class="mast site-navigation-header"><nav class="nav"><div class="ohl-language-group"><span class="active-language">日本語</span> <span class="lang-separator">/</span> <a href="/about/en/">English</a></div><a class="home-return" href="/?lang=ja">HOME</a></nav></header>
 <main class="page"><h1>About</h1>
 <div class="prose">
 <p>日女（ひめ）は言葉から始まる創作をしています。</p>
