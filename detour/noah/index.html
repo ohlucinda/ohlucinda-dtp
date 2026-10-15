@@ -88,9 +88,14 @@
  .ohl-detour-nav .return{margin-right:12px}
  .ohl-detour-nav .home-return{margin-left:12px}
 }
+
+/* Mirror the Anything Goes viewer: one language group and separate 20px HOME gap. */
+.ohl-detour-nav{gap:0}
+.ohl-detour-nav .ohl-language-group{display:flex;align-items:center;gap:9px;white-space:nowrap}
+@media(max-width:560px){.ohl-detour-nav .ohl-language-group{gap:6px}}
 </style>
 </head>
-<body><nav class="ohl-detour-nav" aria-label="Site navigation"><a class="return" href="/detour/en/">Detours</a><span class="unavailable" lang="ja">日本語</span><span>/</span><span class="selected" lang="en">English</span><a class="home-return" href="/en/">HOME</a></nav>
+<body><nav class="ohl-detour-nav" aria-label="Site navigation"><a class="return" href="/detour/en/">Detours</a><div class="ohl-language-group"><span class="unavailable" lang="ja">日本語</span><span>/</span><span class="selected" lang="en">English</span></div><a class="home-return" href="/en/">HOME</a></nav>
 <main class="wrap">
   <header>
     <div class="eyebrow">Notes from Noah</div>
