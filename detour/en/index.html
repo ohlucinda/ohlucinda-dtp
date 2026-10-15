@@ -263,8 +263,13 @@
  max-width:none!important;
  text-align:right!important;
 }
+
+/* Mirror the Anything Goes viewer: one language group and separate 20px HOME gap. */
+.ohl-detour-nav{gap:0}
+.ohl-detour-nav .ohl-language-group{display:flex;align-items:center;gap:9px;white-space:nowrap}
+@media(max-width:560px){.ohl-detour-nav .ohl-language-group{gap:6px}}
 </style></head>
-<body><nav class="ohl-detour-nav" aria-label="Site navigation"><a  href="/detour/" lang="ja">日本語</a><span class="lang-separator">/</span><span class="selected">English</span><a class="home-return" href="/en/">HOME</a></nav><div class="wrap"><header class="top site-unified-header site-navigation-header" aria-hidden="true"></header>
+<body><nav class="ohl-detour-nav" aria-label="Site navigation"><div class="ohl-language-group"><a  href="/detour/" lang="ja">日本語</a><span class="lang-separator">/</span><span class="selected">English</span></div><a class="home-return" href="/en/">HOME</a></nav><div class="wrap"><header class="top site-unified-header site-navigation-header" aria-hidden="true"></header>
 <main><section class="hero"><div class="eye">DETOURS</div><h1>Detours</h1><p>One work leads to another. A line in a song points somewhere unexpected. Nagi and Noah each follow what catches their attention, in their own way.</p></section>
 <nav class="paths" aria-label="Detour editors">
 <section class="path"><div class="name">NOAH</div><h2><a href="/detour/noah/">Found Connections</a></h2><p>Noah notices threads between songs and words, both their similarities and their differences.</p><a class="go" href="/detour/noah/">Read Noah's notes</a></section></nav></main>
