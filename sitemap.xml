@@ -23,11 +23,13 @@ permalink: /sitemap.xml
   <url><loc>{{ '/detour/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/en/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/nagi/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/detour/nagi/en/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/nagi/names/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/nagi/nantonaku/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/nagi/two-truths/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/nagi/chigau-verb/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/noah/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/detour/noah/en/' | absolute_url | xml_escape }}</loc></url>
 {% comment %}Journal entries use their actual frontmatter permalinks. Jekyll excludes future posts unless enabled.{% endcomment %}
 {% for post in site.posts %}{% unless post.sitemap == false or post.published == false %}
   <url><loc>{{ post.url | absolute_url | xml_escape }}</loc></url>
