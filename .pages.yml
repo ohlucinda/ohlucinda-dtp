@@ -31,6 +31,18 @@ content:
         label: Public URL (e.g. /akai-mono/)
         type: string
         required: true
+      - name: added_at
+        label: Date added to Months
+        type: date
+        required: false
+        options:
+          format: yyyy-MM-dd
+      - name: updated_at
+        label: Date of published update
+        type: date
+        required: false
+        options:
+          format: yyyy-MM-dd
       - name: layout
         label: Layout
         type: string
