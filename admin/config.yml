@@ -39,6 +39,22 @@ collections:
         name: permalink
         widget: string
         required: true
+      - label: "公開追加日（実際にMonthsへ掲載した日）"
+        name: added_at
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        required: false
+        hint: "新しい記事を公開するときに入力。本文の日付とは別です。"
+      - label: "更新日（公開後に本文を変更した日）"
+        name: updated_at
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        required: false
+        hint: "修正を公開したときだけ更新。変更がなければ空欄のまま。"
       - label: "本文"
         name: body
         widget: markdown
