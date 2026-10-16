@@ -140,7 +140,7 @@
 </div>
 <a aria-label="Lyrics 独立サイトを開く" class="lyrics-home" href="https://lyrics.ohlucinda.com/" rel="noopener" target="_blank"><span class="lyrics-word">Lyrics</span><span class="lyrics-sub">LYRICS.OHLUCINDA.COM</span></a>
 </section><div aria-label="Other places" class="other">
-<section><h3><a href="https://ohlucinda.com/months/">Months</a></h3><p data-en="A journal of things that catch my attention." data-jp="気になったこと、言いたいことを書き留めるジャーナル。">気になったこと、言いたいことを書き留めるジャーナル。</p></section>
+<section><h3><a href="https://ohlucinda.com/months/">Months</a></h3><p data-en="A journal of things that catch my attention." data-jp="気になったこと、言いたいことを書き留めるジャーナル。">気になったこと、言いたいことを書き留めるジャーナル。</p><div class="recent" style="margin-top:20px"><span class="over">LATEST JOURNAL</span><a id="latest-months" href="https://ohlucinda.com/months/">最新の文章を見る</a></div></section>
 
 
 <section><h3><a href="https://ohlucinda.com/about/" id="about-link">About</a></h3><p data-en="About Hime, her work, and this place." data-jp="日女の創作と、この場所について。">日女の創作と、この場所について。</p></section><section><h3><a href="https://ohlucinda.com/bookmarks/" id="bookmarks-link">Bookmarks</a></h3><p data-en="Things found and worth keeping." data-jp="見つけたものや、残しておきたいもの。">見つけたものや、残しておきたいもの。</p></section></div>
@@ -150,4 +150,36 @@
 <script>
 (function(){const jp=document.getElementById('jp'),en=document.getElementById('en');function setLang(l){const english=l==='en';document.documentElement.lang=english?'en':'ja';jp.classList.toggle('on',!english);en.classList.toggle('on',english);document.querySelectorAll('[data-jp][data-en]').forEach(e=>{e.textContent=e.dataset[english?'en':'jp']});const data=english?['White Morning','by Hime','Playing became a story. The story became getting even. This is White Morning by Hime.','View the work','https://shiroiasa.ohlucinda.com/en/']:['白い朝','著：日女','遊んでいたら、物語を書いていた。書いていたら、仕返しをしていた。これが、日女の『白い朝』。','作品を見る','https://shiroiasa.ohlucinda.com/'];['work-title','work-author','work-desc','work-cta'].forEach((id,i)=>document.getElementById(id).textContent=data[i]);document.getElementById('work-cta').href=data[4];document.getElementById('hero-link').href=data[4];document.getElementById('detour-link').href=english?'https://ohlucinda.com/detour/en/':'https://ohlucinda.com/detour/';document.getElementById('bookmarks-link').href=english?'https://ohlucinda.com/bookmarks/en/':'https://ohlucinda.com/bookmarks/';document.getElementById('about-link').href=english?'https://ohlucinda.com/about/en/':'https://ohlucinda.com/about/';document.getElementById('latest-work').textContent=english?'Good Morning, Noah':'ノアのこと　一';document.getElementById('latest-work').href='https://ohlucinda.com/anything-goes/'+(english?'en/':'')+'?work=noa-no-koto-1&work_lang='+(english?'en':'ja');document.getElementById('latest-detour').href=english?'https://ohlucinda.com/detour/noah/en/':'https://ohlucinda.com/detour/nagi/painting-spoke/';}function chooseLang(lang){try{localStorage.setItem('ohlucinda-home-language',lang)}catch(e){}setLang(lang)}jp.addEventListener('click',()=>chooseLang('jp'));en.addEventListener('click',()=>{try{localStorage.setItem('ohlucinda-home-language','en')}catch(e){}window.location.assign('https://ohlucinda.com/en/')});let initial='jp';try{const query=new URLSearchParams(window.location.search).get('lang');const stored=localStorage.getItem('ohlucinda-home-language');let cameFromEnglish=false;try{const ref=new URL(document.referrer);cameFromEnglish=(ref.hostname==='ohlucinda.com'||ref.hostname.endsWith('.ohlucinda.com'))&&(/\/en(?:\/|$)/.test(ref.pathname)||ref.searchParams.get('lang')==='en'||ref.searchParams.get('work_lang')==='en')}catch(e){}initial=(query==='en'||query==='ja')?(query==='en'?'en':'jp'):(cameFromEnglish||stored==='en'?'en':'jp');if(query==='en'||query==='ja'||cameFromEnglish)localStorage.setItem('ohlucinda-home-language',initial)}catch(e){}setLang(initial)})();
 </script>
-<script>(function(){var link=document.getElementById('about-jem-link');function update(){link.href='https://ohlucinda.com/about-jem/'+(document.documentElement.lang==='en'?'en':'ja')+'/';}document.getElementById('jp').addEventListener('click',update);document.getElementById('en').addEventListener('click',update);update();})();</script></body></html>
+<script>(function(){var link=document.getElementById('about-jem-link');function update(){link.href='https://ohlucinda.com/about-jem/'+(document.documentElement.lang==='en'?'en':'ja')+'/';}document.getElementById('jp').addEventListener('click',update);document.getElementById('en').addEventListener('click',update);update();})();</script><script>
+/* Months' latest journal link is driven by the published Jekyll collection. */
+(function(){
+  const link=document.getElementById('latest-months');
+  if(!link)return;
+  let latest=null;
+  function show(){
+    if(document.documentElement.lang==='en'){
+      link.textContent='Journal in Japanese';
+      link.href='https://ohlucinda.com/months/';
+    }else if(latest){
+      link.textContent=latest.title;
+      link.href=latest.url;
+    }else{
+      link.textContent='最新の文章を見る';
+      link.href='https://ohlucinda.com/months/';
+    }
+  }
+  new MutationObserver(show).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  fetch('/months-activity.json',{cache:'no-cache'})
+    .then(response=>{if(!response.ok)throw new Error('journal data unavailable');return response.json();})
+    .then(data=>{
+      if(!Array.isArray(data.entries)||!data.entries.length)return;
+      latest=data.entries.slice().sort((a,b)=>{
+        const ad=String(a.updatedAt||a.addedAt||a.date||'').slice(0,10);
+        const bd=String(b.updatedAt||b.addedAt||b.date||'').slice(0,10);
+        return bd.localeCompare(ad);
+      })[0];
+      show();
+    }).catch(()=>{show();});
+  show();
+})();
+</script></body></html>
