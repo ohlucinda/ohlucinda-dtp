@@ -28,6 +28,7 @@ permalink: /sitemap.xml
   <url><loc>{{ '/detour/nagi/nantonaku/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/nagi/two-truths/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/nagi/chigau-verb/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/detour/nagi/painting-spoke/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/noah/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/noah/sonna-mono-mo-arunda-na/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/noah/en/' | absolute_url | xml_escape }}</loc></url>
