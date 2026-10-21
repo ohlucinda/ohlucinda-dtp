@@ -33,18 +33,18 @@ content:
         required: true
       - name: added_at
         label: Date added to Months
-        type: date
+        type: string
         required: false
         default: ""
-        options:
-          format: yyyy-MM-dd
+        description: "Optional. Leave blank if unknown; otherwise YYYY-MM-DD."
+        pattern: "^([0-9]{4}-[0-9]{2}-[0-9]{2})?$"
       - name: updated_at
         label: Date of published update
-        type: date
+        type: string
         required: false
         default: ""
-        options:
-          format: yyyy-MM-dd
+        description: "Optional. Leave blank if unknown; otherwise YYYY-MM-DD."
+        pattern: "^([0-9]{4}-[0-9]{2}-[0-9]{2})?$"
       - name: layout
         label: Layout
         type: string
