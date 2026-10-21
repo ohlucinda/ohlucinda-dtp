@@ -108,7 +108,8 @@ body > main{max-width:1150px;padding:25px clamp(22px,5vw,76px) 95px;line-height:
           <details class="month-group" {% if forloop.first %}open{% endif %}>
             <summary><span>{{ group.name }}</span><span class="month-meta"><span class="month-count">{{ group.items | size }} entries</span><span class="month-toggle" aria-hidden="true">⌄</span></span></summary>
             <ul class="month-entries">
-              {% for post in group.items %}
+              {% assign month_posts_oldest_first = group.items | sort: "date" %}
+              {% for post in month_posts_oldest_first %}
                 <li data-months-entry="{{ post.url | relative_url }}">
                   <a href="{{ post.url | relative_url }}" data-months-post="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
                   <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%m.%d' }}</time>
