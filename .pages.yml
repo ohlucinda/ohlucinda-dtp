@@ -48,5 +48,7 @@ content:
         type: string
         default: default
       - name: body
-        label: Article
-        type: rich-text
+        label: Article (source-preserving)
+        type: code
+        options:
+          format: markdown
