@@ -126,20 +126,38 @@ body > main{max-width:1150px;padding:25px clamp(22px,5vw,76px) 95px;line-height:
 (function(){
   'use strict';
   const url='/months-activity.json';
-  // CMS format restoration (2026-10-21): start a fresh reading baseline so
-  // reversible source-format changes are not reported as article updates.
-  const storageKey='ohlucinda-months-seen-v2';
+  // Compare readable words, not line-break markup or image paths.
+  // Keep the previous raw-hash record for a one-time, conservative migration.
+  const storageKey='ohlucinda-months-seen-text-v1';
+  const legacyStorageKey='ohlucinda-months-seen-v2';
   const list=document.getElementById('months-recent-list');
   const latestLink=document.getElementById('months-latest-link');
   const latestDate=document.getElementById('months-latest-date');
   let seen=null;
+  let legacySeen=null;
   let posts={};
   let marks={};
-  try{const saved=localStorage.getItem(storageKey);if(saved){const candidate=JSON.parse(saved);if(candidate&&typeof candidate==='object'&&!Array.isArray(candidate))seen=candidate;}}catch(e){}
+  try{
+    const saved=localStorage.getItem(storageKey);
+    if(saved){const candidate=JSON.parse(saved);if(candidate&&typeof candidate==='object'&&!Array.isArray(candidate))seen=candidate;}
+    if(!seen){
+      const old=localStorage.getItem(legacyStorageKey);
+      if(old){const candidate=JSON.parse(old);if(candidate&&typeof candidate==='object'&&!Array.isArray(candidate))legacySeen=candidate;}
+    }
+  }catch(e){}
   function fingerprint(str){
     let h=2166136261;
     for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619);}
     return (h>>>0).toString(16);
+  }
+  function textFingerprint(html){
+    // Use the visible article text. Ignore layout tags, images and attributes.
+    // Whitespace-only changes are typography, not published prose changes.
+    const template=document.createElement('template');
+    template.innerHTML=String(html||'');
+    template.content.querySelectorAll('script,style,noscript').forEach(node=>node.remove());
+    const words=(template.content.textContent||'').replace(/[\s\u00a0\u3000]+/g,'');
+    return fingerprint(words);
   }
   function store(){if(!seen)return;try{localStorage.setItem(storageKey,JSON.stringify(seen));}catch(e){}}
   function activityDate(post){return String(post.updatedAt||post.addedAt||post.date||'').slice(0,10);}
@@ -174,37 +192,26 @@ body > main{max-width:1150px;padding:25px clamp(22px,5vw,76px) 95px;line-height:
     const entries=Array.isArray(data.entries)?data.entries.filter(p=>p&&p.url&&p.title):[];
     if(!entries.length)return;
     const hashes={};
-    entries.forEach(p=>{posts[p.url]=p;hashes[p.url]=fingerprint(String(p.content||''));});
-    // One-time reader-history migration for the approved, formatting-only
-    // May–August spacing reduction (and earlier 赤いもの adjustment).
-    // Preserve every other read/NEW/update record. Later textual changes
-    // must continue to show as updates, so migrate each URL at most once.
-    const spacingOnlyUrls=new Set(["/akai-mono/","/aoi-ressha/","/bara/","/best-friend/","/haha-no-koto/","/chiisana-shiawase-de-ii/","/gai-doku/","/pink-no-kagi/","/memo/","/happy-day/","/yume-no-hanashi/","/kyohi-suru-kotoba-tachi/","/hakkutsu/","/ichiban-suki/","/sugoi/","/sho-ni-awanai/","/baka-towa-nani-ka/","/nayami-ga-nai/","/kashi-mo-e/","/no/","/karada-o-wasureru/","/super-rose/","/han-aka-ichigo-soushitu-jiken/","/tamago-choja/","/fushigi/","/yama-ni-kaere/","/mushi-no-shasin/","/konchu-no-shashin/","/suika-no-mi-hayasugita-wakare/","/kioku-no-collage/","/pitari/","/sukoshi-otona/","/awa-no-imi/","/mizu/","/shashin/","/jikkan/","/gokai/","/kensho/","/watashi-no-anma/","/mata-hajimaru/","/watashi-no-daigomi/"]);
-    const spacingMigrationKey='ohlucinda-months-spacing-pass-2026-10-21-v1';
-    let spacingMigrated={};
-    try{
-      const saved=JSON.parse(localStorage.getItem(spacingMigrationKey)||'null');
-      if(saved&&typeof saved==='object'&&!Array.isArray(saved))spacingMigrated=saved;
-    }catch(e){}
-    if(seen){
-      let seenChanged=false, migratedChanged=false;
-      entries.forEach(p=>{
-        if(!spacingOnlyUrls.has(p.url)||spacingMigrated[p.url]||
-           !Object.prototype.hasOwnProperty.call(seen,p.url)||p.updatedAt)return;
-        // The source diffs for these 41 pages contain <br> reductions only.
-        // A stored old hash may correspond to Markdown or rendered HTML;
-        // re-baseline *only this approved page*, without exposing content.
-        if(seen[p.url]!==hashes[p.url]){
-          seen[p.url]=hashes[p.url];
-          seenChanged=true;
-        }
-        spacingMigrated[p.url]=true;
-        migratedChanged=true;
-      });
-      if(seenChanged)store();
-      if(migratedChanged)try{localStorage.setItem(spacingMigrationKey,JSON.stringify(spacingMigrated));}catch(e){}
+    entries.forEach(p=>{posts[p.url]=p;hashes[p.url]=textFingerprint(p.content);});
+    if(!seen){
+      if(legacySeen){
+        // Preserve which posts were previously read, and preserve pending
+        // older content changes wherever the old raw fingerprints still match.
+        // These two posts were checked against their GitHub originals:
+        // only image, formatting and metadata changed, not any prose.
+        const verifiedRepairs=new Set(['/konchu-no-shashin/','/han-aka-ichigo-soushitu-jiken/']);
+        seen={};
+        entries.forEach(p=>{
+          if(!Object.prototype.hasOwnProperty.call(legacySeen,p.url))return;
+          const previouslyDifferent=legacySeen[p.url]!==fingerprint(String(p.content||''));
+          seen[p.url]=(previouslyDifferent&&!verifiedRepairs.has(p.url))
+            ? '__legacy_pending_update__' : hashes[p.url];
+        });
+      }else{
+        seen={...hashes};
+      }
+      store();
     }
-    if(!seen){seen={...hashes};store();}
     entries.forEach(p=>{marks[p.url]=status(p,hashes[p.url]);});
     const prioritized=entries.slice().sort((a,b)=>{
       const aNew=marks[a.url]?1:0,bNew=marks[b.url]?1:0;
