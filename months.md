@@ -195,11 +195,11 @@ body > main{max-width:1150px;padding:25px clamp(22px,5vw,76px) 95px;line-height:
     entries.forEach(p=>{posts[p.url]=p;hashes[p.url]=textFingerprint(p.content);});
     if(!seen){
       if(legacySeen){
-        // Preserve which posts were previously read, and preserve pending
-        // older content changes wherever the old raw fingerprints still match.
-        // These two posts were checked against their GitHub originals:
-        // only image, formatting and metadata changed, not any prose.
-        const verifiedRepairs=new Set(['/konchu-no-shashin/','/han-aka-ichigo-soushitu-jiken/']);
+        // Preserve which posts were previously read. The 41 articles in this
+        // set were verified against their pre-adjustment sources: typography
+        // only, plus the corrected photo and metadata in two July articles.
+        // Other pre-existing unread changes remain visible after migration.
+        const verifiedRepairs=new Set(["/akai-mono/","/aoi-ressha/","/bara/","/best-friend/","/haha-no-koto/","/chiisana-shiawase-de-ii/","/gai-doku/","/pink-no-kagi/","/memo/","/happy-day/","/yume-no-hanashi/","/kyohi-suru-kotoba-tachi/","/hakkutsu/","/ichiban-suki/","/sugoi/","/sho-ni-awanai/","/baka-towa-nani-ka/","/nayami-ga-nai/","/kashi-mo-e/","/no/","/karada-o-wasureru/","/super-rose/","/han-aka-ichigo-soushitu-jiken/","/tamago-choja/","/fushigi/","/yama-ni-kaere/","/mushi-no-shasin/","/konchu-no-shashin/","/suika-no-mi-hayasugita-wakare/","/kioku-no-collage/","/pitari/","/sukoshi-otona/","/awa-no-imi/","/mizu/","/shashin/","/jikkan/","/gokai/","/kensho/","/watashi-no-anma/","/mata-hajimaru/","/watashi-no-daigomi/"]);
         seen={};
         entries.forEach(p=>{
           if(!Object.prototype.hasOwnProperty.call(legacySeen,p.url))return;
