@@ -174,22 +174,36 @@ body > main{max-width:1150px;padding:25px clamp(22px,5vw,76px) 95px;line-height:
     const entries=Array.isArray(data.entries)?data.entries.filter(p=>p&&p.url&&p.title):[];
     if(!entries.length)return;
     const hashes={};
-    entries.forEach(p=>{
-      posts[p.url]=p;
-      hashes[p.url]=fingerprint(String(p.content||''));
-      // One-time migration: the approved 2026-10-21 adjustment in 赤いもの
-      // reduces exactly seven <br><br> separators to <br>. It is typography,
-      // not a new article update; preserve the reader's other seen records.
-      if(seen&&p.url==='/akai-mono/'&&!p.updatedAt&&
-         Object.prototype.hasOwnProperty.call(seen,p.url)){
-        const body=String(p.content||'');
-        if((body.match(/<br>/g)||[]).length===7&&!body.includes('<br><br>')&&
-           seen[p.url]===fingerprint(body.replace(/<br>/g,'<br><br>'))){
+    entries.forEach(p=>{posts[p.url]=p;hashes[p.url]=fingerprint(String(p.content||''));});
+    // One-time reader-history migration for the approved, formatting-only
+    // May–August spacing reduction (and earlier 赤いもの adjustment).
+    // Preserve every other read/NEW/update record. Later textual changes
+    // must continue to show as updates, so migrate each URL at most once.
+    const spacingOnlyUrls=new Set(["/akai-mono/","/aoi-ressha/","/bara/","/best-friend/","/haha-no-koto/","/chiisana-shiawase-de-ii/","/gai-doku/","/pink-no-kagi/","/memo/","/happy-day/","/yume-no-hanashi/","/kyohi-suru-kotoba-tachi/","/hakkutsu/","/ichiban-suki/","/sugoi/","/sho-ni-awanai/","/baka-towa-nani-ka/","/nayami-ga-nai/","/kashi-mo-e/","/no/","/karada-o-wasureru/","/super-rose/","/han-aka-ichigo-soushitu-jiken/","/tamago-choja/","/fushigi/","/yama-ni-kaere/","/mushi-no-shasin/","/konchu-no-shashin/","/suika-no-mi-hayasugita-wakare/","/kioku-no-collage/","/pitari/","/sukoshi-otona/","/awa-no-imi/","/mizu/","/shashin/","/jikkan/","/gokai/","/kensho/","/watashi-no-anma/","/mata-hajimaru/","/watashi-no-daigomi/"]);
+    const spacingMigrationKey='ohlucinda-months-spacing-pass-2026-10-21-v1';
+    let spacingMigrated={};
+    try{
+      const saved=JSON.parse(localStorage.getItem(spacingMigrationKey)||'null');
+      if(saved&&typeof saved==='object'&&!Array.isArray(saved))spacingMigrated=saved;
+    }catch(e){}
+    if(seen){
+      let seenChanged=false, migratedChanged=false;
+      entries.forEach(p=>{
+        if(!spacingOnlyUrls.has(p.url)||spacingMigrated[p.url]||
+           !Object.prototype.hasOwnProperty.call(seen,p.url)||p.updatedAt)return;
+        // The source diffs for these 41 pages contain <br> reductions only.
+        // A stored old hash may correspond to Markdown or rendered HTML;
+        // re-baseline *only this approved page*, without exposing content.
+        if(seen[p.url]!==hashes[p.url]){
           seen[p.url]=hashes[p.url];
-          store();
+          seenChanged=true;
         }
-      }
-    });
+        spacingMigrated[p.url]=true;
+        migratedChanged=true;
+      });
+      if(seenChanged)store();
+      if(migratedChanged)try{localStorage.setItem(spacingMigrationKey,JSON.stringify(spacingMigrated));}catch(e){}
+    }
     if(!seen){seen={...hashes};store();}
     entries.forEach(p=>{marks[p.url]=status(p,hashes[p.url]);});
     const prioritized=entries.slice().sort((a,b)=>{
