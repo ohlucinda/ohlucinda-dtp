@@ -353,10 +353,8 @@ function renderArtwork(html){
 }
 function show(l){
   lang=l;
-  const homeReturn=document.querySelector('.viewer-home-return');
-  if(homeReturn)homeReturn.href=l==='en'?'https://ohlucinda.com/en/':'https://ohlucinda.com/?lang=ja';
-  const listHome=document.querySelector('.top .home');
-  if(listHome)listHome.href=l==='en'?'https://ohlucinda.com/en/':'https://ohlucinda.com/?lang=ja';
+  // HOME targets belong to the selected HOME language, not the artwork's language.
+  // The shared language-context script maintains both listing and HOME return links.
   const sequence=++renderSequence;
   ja.className=l==='ja'?'active':'inactive';
   en.className=l==='en'?'active':'inactive';
