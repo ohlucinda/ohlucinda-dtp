@@ -53,7 +53,7 @@
       : read();
     if (homePage) {
       // An explicit HOME URL is an actual HOME choice.
-      context.home = p === '/en/' || (p === '/' && params.get('lang') === 'en') ? 'en' : 'ja';
+      context.home = document.documentElement.lang === 'en' ? 'en' : 'ja';
       context.homeChosen = true;
     } else {
       const section = sectionAt(p);
@@ -113,7 +113,17 @@
   }
   // Artwork switching can update HOME hrefs in older inline scripts.
   // Reapply the selected HOME and listing destinations *after* those handlers.
-  document.addEventListener('click', function () { applyNavigation(); });
+  document.addEventListener('click', function () {
+    if (homePage && context) {
+      const visible = document.documentElement.lang === 'en' ? 'en' : 'ja';
+      if (context.home !== visible) {
+        context.home = visible;
+        context.homeChosen = true;
+        save();
+      }
+    }
+    applyNavigation();
+  });
   window.addEventListener('popstate', function () { applyNavigation(); });
   if (document.readyState === 'loading')
     document.addEventListener('DOMContentLoaded', initialize, { once: true });
