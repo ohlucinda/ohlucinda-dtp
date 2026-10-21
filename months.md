@@ -105,7 +105,7 @@ body > main{max-width:1150px;padding:25px clamp(22px,5vw,76px) 95px;line-height:
       <div class="archive-list">
         {% assign posts_by_month = site.posts | group_by_exp: "post", "post.date | date: '%B %Y'" %}
         {% for group in posts_by_month %}
-          <details class="month-group" {% if forloop.first %}open{% endif %}>
+          <details class="month-group">
             <summary><span>{{ group.name }}</span><span class="month-meta"><span class="month-count">{{ group.items | size }} entries</span><span class="month-toggle" aria-hidden="true">⌄</span></span></summary>
             <ul class="month-entries">
               {% assign month_posts_oldest_first = group.items | sort: "date" %}
