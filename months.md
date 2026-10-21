@@ -185,7 +185,7 @@ body > main{max-width:1150px;padding:25px clamp(22px,5vw,76px) 95px;line-height:
     a.href=post.url;a.textContent=post.title;a.setAttribute('data-months-post',post.url);
     time.dateTime=post.date;time.textContent=(post.date||'').slice(5).replace('-','.');
     li.appendChild(a);
-    if(marks[post.url])li.appendChild(badge(marks[post.url]));
+    if(marks[post.url]==='NEW')li.appendChild(badge('NEW'));
     li.appendChild(time);
     return li;
   }
@@ -224,12 +224,7 @@ body > main{max-width:1150px;padding:25px clamp(22px,5vw,76px) 95px;line-height:
     if(latestDate){latestDate.dateTime=mostRecent.date;latestDate.textContent=mostRecent.date.replaceAll('-','.');}
     document.querySelectorAll('[data-months-entry]').forEach(li=>{
       const mark=marks[li.getAttribute('data-months-entry')];
-      if(mark)li.querySelector('a')?.after(badge(mark));
-    });
-    document.querySelectorAll('.month-group').forEach(group=>{
-      let count=0;
-      group.querySelectorAll('[data-months-entry]').forEach(li=>{if(marks[li.getAttribute('data-months-entry')])count++;});
-      if(count)group.querySelector('.month-meta')?.prepend(badge(count+'件更新'));
+      if(mark==='NEW')li.querySelector('a')?.after(badge('NEW'));
     });
     document.addEventListener('click',event=>{
       const a=event.target.closest?.('a[data-months-post]');
