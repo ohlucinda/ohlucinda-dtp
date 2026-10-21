@@ -126,7 +126,9 @@ body > main{max-width:1150px;padding:25px clamp(22px,5vw,76px) 95px;line-height:
 (function(){
   'use strict';
   const url='/months-activity.json';
-  const storageKey='ohlucinda-months-seen-v1';
+  // CMS format restoration (2026-10-21): start a fresh reading baseline so
+  // reversible source-format changes are not reported as article updates.
+  const storageKey='ohlucinda-months-seen-v2';
   const list=document.getElementById('months-recent-list');
   const latestLink=document.getElementById('months-latest-link');
   const latestDate=document.getElementById('months-latest-date');
