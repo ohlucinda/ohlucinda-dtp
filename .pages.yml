@@ -35,12 +35,14 @@ content:
         label: Date added to Months
         type: date
         required: false
+        default: ""
         options:
           format: yyyy-MM-dd
       - name: updated_at
         label: Date of published update
         type: date
         required: false
+        default: ""
         options:
           format: yyyy-MM-dd
       - name: layout
