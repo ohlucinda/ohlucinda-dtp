@@ -54,6 +54,12 @@
 
 .home-lyric-video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#111;object-fit:contain}
 
+
+/* BOOKS: preserve the existing right-hand window size; never crop book covers. */
+.book-cover{display:flex;align-items:center;justify-content:center;background:#f7f7f7}
+.book-cover img{width:100%;height:100%;object-fit:contain;position:relative;z-index:1}
+.book-cover .book-cover-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:400 clamp(28px,3vw,42px)/1.4 'adobe-caslon-pro',Georgia,serif;color:#555;z-index:0}
+
 /* Remove decorative section-divider lines only; preserve link underlines. */
 .window-card, .changing, .changing-card, .other section, .bottom{border-top:none!important;}
 
@@ -119,12 +125,10 @@
 <a class="cover" href="https://shiroiasa.ohlucinda.com/" id="hero-link" rel="noopener" target="_blank"><img alt="白い朝 作品画像" onerror="this.style.display='none'" src="https://shiroiasa.ohlucinda.com/images/shiroi-asa-og.jpg"/></a>
 <div class="work-copy"><h2 id="work-title">白い朝</h2><div class="author" id="work-author">著：日女</div><p id="work-desc">遊んでいたら、物語を書いていた。書いていたら、仕返しをしていた。これが、日女の『白い朝』。</p><a class="go" href="https://shiroiasa.ohlucinda.com/" id="work-cta" rel="noopener" target="_blank">作品を見る</a></div>
 </article>
-<article aria-label="Hime's window" class="window-card">
-<div class="window-head"><span class="eyebrow" data-jp="ひめの窓" data-en="HIME">ひめの窓</span></div>
-<!-- HIME'S WINDOW: なんとなく video -->
-<video poster="/images/nantonaku.jpg" class="home-lyric-video" controls playsinline preload="metadata" aria-label="なんとなく リリックビデオ"><source src="/videos/nantonaku.mp4" type="video/mp4">お使いのブラウザでは動画を再生できません。</video>
-<div class="work-copy"><h2 data-en="Nantonaku" data-jp="なんとなく">なんとなく</h2><p data-jp="遊びの形。なんとなく。" data-en="A Form of Play. Nantonaku.">遊びの形。なんとなく。</p></div>
-
+<article aria-label="Books: 蜜" class="window-card">
+<div class="window-head"><span class="eyebrow">BOOKS</span></div>
+<a class="cover book-cover" href="https://www.amazon.co.jp/dp/B0HNV76ZW8" rel="noopener" target="_blank"><img src="/images/mitsu-cover.jpg" alt="小説『蜜』の正式な表紙" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"/><span class="book-cover-fallback" aria-hidden="true">蜜</span></a>
+<div class="work-copy"><h2>蜜</h2><div class="author">著：日女</div><p>小説『蜜』。電子書籍として出版。</p><a class="go" href="https://www.amazon.co.jp/dp/B0HNV76ZW8" rel="noopener" target="_blank">Amazonで見る</a></div>
 </article>
 </section>
 <section aria-labelledby="changing-heading" class="changing">
