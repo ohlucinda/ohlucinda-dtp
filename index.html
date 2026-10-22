@@ -29,14 +29,14 @@
 .changing{border-top:1px solid var(--rule);padding:27px 0 46px}.changing-head{display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin-bottom:28px}.changing-head h2{font:400 clamp(20px,2vw,27px)/1.5 var(--serif);margin:0}.changing-head p{font-size:13px;color:#777;margin:0}
 .changing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px}
 .changing-card{min-width:0;border-top:1px solid #e4e4e4;padding:18px 0 23px}.changing-title{display:flex;gap:13px;align-items:baseline;flex-wrap:wrap;margin-bottom:12px}.changing-title a{font:400 clamp(22px,2.2vw,28px)/1.4 var(--serif);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}.changing-title span{font:400 12px var(--serif);color:#777}.changing-card p{font-size:clamp(17px,1.5vw,18px);line-height:1.85;color:#555;margin:0 0 20px}.recent{font-size:13px;line-height:1.8}.recent .over{font:400 11px var(--serif);letter-spacing:.09em;color:#888;display:block;margin-bottom:5px}.recent a{border-bottom:1px solid #aaa;padding-bottom:3px}
-.other{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;padding:0 0 44px}.other section{padding:20px 0;border-top:1px solid var(--rule);min-width:0}.other h3{font:400 clamp(18px,1.9vw,24px)/1.5 var(--serif);margin:0 0 10px}.other h3 a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}.other p{font-size:clamp(17px,1.5vw,18px);line-height:1.9;color:#555;margin:0}
+.other{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;padding:0 0 44px}.other section{padding:20px 0;border-top:1px solid var(--rule);min-width:0}.other h3{font:400 clamp(18px,1.9vw,24px)/1.5 var(--serif);margin:0 0 10px}.other h3 a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}.other p{font-size:clamp(17px,1.5vw,18px);line-height:1.9;color:#555;margin:0}
 .bottom{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:26px 0 36px;border-top:1px solid var(--rule);font:400 14px/1.8 var(--serif)}.bottom a{text-decoration:underline;text-underline-offset:4px}
 
 @media(max-width:800px){.frame{padding:0 clamp(18px,4vw,32px)}.top-windows{gap:28px;padding-top:35px}.changing-grid{gap:24px}.other{grid-template-columns:1fr}}
 @media(max-width:640px){.frame{padding:0 20px}.mast{padding:23px 0 20px}.brand{font-size:27px}.top-windows{grid-template-columns:1fr;gap:40px;padding:28px 0 45px}.cover,.live-art{aspect-ratio:1.6}.changing-grid{grid-template-columns:1fr;gap:4px}.changing-head{align-items:flex-start;flex-direction:column;gap:6px}.other{grid-template-columns:1fr;gap:3px}.bottom{flex-wrap:wrap}}
 
-/* Months left, About center, Bookmarks right. Preserve the rest. */
-@media (min-width:801px){.other section:nth-child(1){text-align:left}.other section:nth-child(2){text-align:center}.other section:nth-child(3){text-align:right}}
+/* Months/Bookmarks on the left, Je'm/About on the right. */
+@media (min-width:801px){.other section:nth-child(odd){text-align:left}.other section:nth-child(even){text-align:right}}
 
 /* Music area: keep Je'm left and Lyrics right */
 .music-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(26px,4vw,58px);align-items:center;padding:12px 0 48px}
@@ -145,9 +145,9 @@
 <a aria-label="Lyrics 独立サイトを開く" class="lyrics-home" href="https://lyrics.ohlucinda.com/" rel="noopener" target="_blank"><span class="lyrics-word">Lyrics</span><span class="lyrics-sub">LYRICS.OHLUCINDA.COM</span></a>
 </section><div aria-label="Other places" class="other">
 <section><h3><a href="https://ohlucinda.com/months/">Months</a></h3><p data-en="A journal of things that catch my attention." data-jp="気になったこと、言いたいことを書き留めるジャーナル。">気になったこと、言いたいことを書き留めるジャーナル。</p><div class="recent" style="margin-top:20px"><span class="over">LATEST JOURNAL</span><a id="latest-months" href="https://ohlucinda.com/months/">最新の文章を見る</a></div></section>
-
-
-<section><h3><a href="https://ohlucinda.com/about/" id="about-link">About</a></h3><p data-en="About Hime, her work, and this place." data-jp="日女の創作と、この場所について。">日女の創作と、この場所について。</p></section><section><h3><a href="https://ohlucinda.com/bookmarks/" id="bookmarks-link">Bookmarks</a></h3><p data-en="Things found and worth keeping." data-jp="見つけたものや、残しておきたいもの。">見つけたものや、残しておきたいもの。</p></section></div>
+<section><h3><a href="https://jem.ohlucinda.com/" target="_blank" rel="noopener noreferrer">Je'm</a></h3><p data-en="Music that begins with words." data-jp="言葉から始まる音楽。">言葉から始まる音楽。</p></section>
+<section><h3><a href="https://ohlucinda.com/bookmarks/" id="bookmarks-link">Bookmarks</a></h3><p data-en="Things found and worth keeping." data-jp="見つけたものや、残しておきたいもの。">見つけたものや、残しておきたいもの。</p></section>
+<section><h3><a href="https://ohlucinda.com/about/" id="about-link">About</a></h3><p data-en="About Hime, her work, and this place." data-jp="日女の創作と、この場所について。">日女の創作と、この場所について。</p></section></div>
 </main>
 <footer class="bottom"><a href="mailto:jemmusicja@duck.com">GET IN TOUCH</a><span>© OHLUCINDA</span></footer>
 </div>
