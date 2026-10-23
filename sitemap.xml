@@ -32,6 +32,7 @@ permalink: /sitemap.xml
   <url><loc>{{ '/detour/noah/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/noah/sonna-mono-mo-arunda-na/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/noah/yomiage/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/detour/noah/yomiage/en/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/noah/en/' | absolute_url | xml_escape }}</loc></url>
 {% comment %}Journal entries use their actual frontmatter permalinks. Jekyll excludes future posts unless enabled.{% endcomment %}
 {% for post in site.posts %}{% unless post.sitemap == false or post.published == false %}
