@@ -1,5 +1,6 @@
 /* OHLUCINDA language navigation: HOME / section / artwork are distinct.
-   Adopted 2026-10-21. No visual styles or artwork content are modified. */
+   Detours separately preserves its entrance, Nagi and Noah listing languages.
+   Adopted 2026-10-21; extended 2026-10-23. No visual styles are changed. */
 (function () {
   'use strict';
   const KEY = 'ohlucinda-navigation-context-v2';
@@ -15,6 +16,12 @@
     if (pathname.startsWith('/bookmarks/')) return 'bookmarks';
     if (pathname.startsWith('/months/')) return 'months';
     return null;
+  }
+  function detourLevel(pathname) {
+    if (/^\/detour\/(?:en\/)?$/.test(pathname)) return 'detour-entrance';
+    if (pathname.startsWith('/detour/nagi/')) return 'detour-nagi';
+    if (pathname.startsWith('/detour/noah/')) return 'detour-noah';
+    return 'detour-entrance';
   }
   function listingAt(pathname, section) {
     if (section === 'anything-goes')
@@ -59,15 +66,34 @@
       const section = sectionAt(p);
       if (section) {
         const urlLang = langAt(p); // The artwork's work_lang is deliberately ignored.
-        if (listingAt(p, section)) {
-          context.sections[section] = urlLang;
-          // A visitor who entered through a listing, not HOME, can choose a new
-          // initial HOME language by switching that listing.
-          if (!context.homeChosen) context.home = urlLang;
-        } else if (!context.sections[section]) {
-          context.sections[section] = urlLang;
+        if (section === 'detour') {
+          // Ignore the old combined sections.detour: it cannot identify a level.
+          const level = detourLevel(p);
+          if (!context.sections['detour-entrance'])
+            context.sections['detour-entrance'] = urlLang;
+          if (level === 'detour-entrance') {
+            // Only switching the entrance updates its chosen language.
+            context.sections['detour-entrance'] = urlLang;
+            if (!context.homeChosen) context.home = urlLang;
+          } else if (listingAt(p, section)) {
+            // Switching one author's list never changes the other levels.
+            context.sections[level] = urlLang;
+          } else if (!context.sections[level]) {
+            // Direct article access supplies an initial language only.
+            context.sections[level] = urlLang;
+          }
+          if (!context.home)
+            context.home = context.sections['detour-entrance'] || urlLang;
+        } else {
+          if (listingAt(p, section)) {
+            context.sections[section] = urlLang;
+            // Preserve existing Anything Goes and other section behavior.
+            if (!context.homeChosen) context.home = urlLang;
+          } else if (!context.sections[section]) {
+            context.sections[section] = urlLang;
+          }
+          if (!context.home) context.home = context.sections[section] || urlLang;
         }
-        if (!context.home) context.home = context.sections[section] || urlLang;
       } else if (!context.home) {
         context.home = langAt(p);
       }
@@ -104,10 +130,20 @@
         if (a.getAttribute('href') !== next) a.setAttribute('href', next);
         return;
       }
-      if (sectionAt(p) !== 'detour' || !context.sections.detour) return;
-      if (!/^(?:寄り道|寄り道の入口へ|Detours|記事一覧へ|Editor's Detour|エディターの寄り道|ノアの寄り道|NOAH'S DETOURS)$/i.test(label))
+      if (sectionAt(p) !== 'detour') return;
+      // Language-switch links ("日本語" / "English") are intentionally excluded.
+      if (!/^(?:寄り道|寄り道の入口へ|寄り道へ戻る|Detours|記事一覧へ|Article index|Editor's Detour|エディターの寄り道|エディターの寄り道へ|ノアの寄り道|NOAH'S DETOURS)$/i.test(label))
         return;
-      const next = destination(dest.pathname, context.sections.detour);
+      const level = /^\/detour\/(?:en\/)?$/.test(dest.pathname)
+        ? 'detour-entrance'
+        : /^\/detour\/nagi\/(?:en\/)?$/.test(dest.pathname)
+          ? 'detour-nagi'
+          : /^\/detour\/noah\/(?:en\/)?$/.test(dest.pathname)
+            ? 'detour-noah' : null;
+      if (!level) return;
+      const language = context.sections[level] ||
+        context.sections['detour-entrance'] || langAt(dest.pathname);
+      const next = destination(dest.pathname, language);
       if (next && a.getAttribute('href') !== next) a.setAttribute('href', next);
     });
   }
