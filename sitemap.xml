@@ -30,6 +30,8 @@ permalink: /sitemap.xml
   <url><loc>{{ '/detour/nagi/chigau-verb/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/nagi/painting-spoke/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/nagi/book-writing-interview/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/books/' | absolute_url | xml_escape }}</loc></url>
+  <url><loc>{{ '/books/en/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/noah/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/noah/sonna-mono-mo-arunda-na/' | absolute_url | xml_escape }}</loc></url>
   <url><loc>{{ '/detour/noah/yomiage/' | absolute_url | xml_escape }}</loc></url>
