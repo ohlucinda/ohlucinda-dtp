@@ -56,6 +56,22 @@ main{display:flex;flex-direction:column;gap:var(--space-section);padding-top:var
 
 
 /* BOOKS: preserve the existing right-hand window size; never crop book covers. */
+
+/* Two full-size, uncropped covers within the existing BOOKS window. */
+.books-cover-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,2.2vw,24px);aspect-ratio:1.75;background:#f7f7f7}
+.books-cover-row .book-cover{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;min-width:0;min-height:0}
+.books-cover-row .book-cover img{width:100%;height:100%;object-fit:contain;display:block;position:relative;z-index:1;transition:opacity .2s ease}
+.books-cover-row .book-cover:hover img,.books-cover-row .book-cover:focus-visible img{opacity:.88}
+.books-copy-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,2.2vw,24px);margin-top:var(--space-medium)}
+.books-copy-row .book-copy{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.books-copy-row .book-copy h2{font-size:clamp(22px,2.5vw,30px);font-weight:400;letter-spacing:.04em;line-height:1.5;margin:0 0 var(--space-small)}
+.books-copy-row .author{font:400 13px/1.7 var(--serif);color:#777;margin:0 0 var(--space-detail)}
+.books-copy-row .book-copy p{font-size:clamp(14px,1.3vw,16px);line-height:1.85;color:#4d4d4d;margin:0 0 20px}
+.books-copy-row .book-kindle-link{margin-top:auto;display:inline-block;transition:transform .28s ease}
+.books-copy-row .book-kindle-link:hover,.books-copy-row .book-kindle-link:focus-visible{transform:translateY(3px)}
+.books-affiliate-disclosure{font:400 12px/1.7 var(--serif);text-align:center;color:#666;margin:28px 0 0}
+@media(max-width:640px){.books-cover-row{aspect-ratio:1.6}.books-copy-row .book-copy h2{font-size:clamp(20px,5vw,24px)}.books-copy-row .book-copy p{font-size:14px}.books-copy-row .book-kindle-link{font-size:14px}}
+
 .book-cover{display:flex;align-items:center;justify-content:center;background:#f7f7f7}
 .book-cover img{width:100%;height:100%;object-fit:contain;position:relative;z-index:1}
 .book-cover .book-cover-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:400 clamp(28px,3vw,42px)/1.4 'adobe-caslon-pro',Georgia,serif;color:#555;z-index:0}
@@ -152,10 +168,17 @@ main{display:flex;flex-direction:column;gap:var(--space-section);padding-top:var
 <a class="cover" href="https://shiroiasa.ohlucinda.com/" id="hero-link" rel="noopener" target="_blank"><img alt="白い朝 作品画像" onerror="this.style.display='none'" src="https://shiroiasa.ohlucinda.com/images/shiroi-asa-og.jpg"/></a>
 <div class="work-copy"><h2 id="work-title">白い朝</h2><div class="author" id="work-author">著：日女</div><p id="work-desc">遊んでいたら、物語を書いていた。書いていたら、仕返しをしていた。これが、日女の『白い朝』。</p><a class="go" href="https://shiroiasa.ohlucinda.com/" id="work-cta" rel="noopener" target="_blank">作品を見る</a></div>
 </article>
-<article aria-label="Books: 蜜" class="window-card">
+<article aria-label="Books: 蜜と続・蜜" class="window-card">
 <div class="window-head"><span class="eyebrow">BOOKS</span></div>
-<a class="cover book-cover" href="https://www.amazon.co.jp/dp/B0HNV76ZW8" rel="noopener" target="_blank"><img src="/images/mitsu-ohlucinda.jpg" alt="小説『蜜』の正式な表紙" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"/><span class="book-cover-fallback" aria-hidden="true">蜜</span></a>
-<div class="work-copy"><h2>蜜</h2><div class="author">著：日女</div><p>小説『蜜』。電子書籍として出版。</p><a class="go" id="book-kindle-link" href="https://www.amazon.co.jp/dp/B0HNV76ZW8" rel="noopener" target="_blank">『蜜』Amazon Kindleストア</a></div>
+<div class="books-cover-row">
+<a class="book-cover" href="https://link.amazon/B00MdTy5C" target="_blank" rel="noopener noreferrer" aria-label="『蜜』をAmazonで見る"><img src="/images/mitsu-ohlucinda.jpg" alt="小説『蜜』の正式な表紙" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"/><span class="book-cover-fallback" aria-hidden="true">蜜</span></a>
+<a class="book-cover" href="https://link.amazon/B0ay4x9V3" target="_blank" rel="noopener noreferrer" aria-label="『続・蜜』をAmazonで見る"><img src="/images/zoku-mitsu-ohlucinda.svg" alt="小説『続・蜜』の正式な表紙" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"/><span class="book-cover-fallback" aria-hidden="true">続・蜜</span></a>
+</div>
+<div class="books-copy-row">
+<div class="book-copy"><h2>蜜</h2><div class="author">著：日女</div><p>小説『蜜』。電子書籍として出版。</p><a class="go book-kindle-link" id="book-kindle-link" href="https://link.amazon/B00MdTy5C" target="_blank" rel="noopener noreferrer">Amazon Kindleストア</a></div>
+<div class="book-copy"><h2>続・蜜</h2><div class="author">著：日女</div><p>小説『続・蜜』。電子書籍として出版。</p><a class="go book-kindle-link" href="https://link.amazon/B0ay4x9V3" target="_blank" rel="noopener noreferrer">Amazon Kindleストア</a></div>
+</div>
+<p class="books-affiliate-disclosure">Amazonのアソシエイトとして、日女は適格販売により収入を得ています。</p>
 </article>
 </section>
 <section aria-labelledby="changing-heading" class="changing">
