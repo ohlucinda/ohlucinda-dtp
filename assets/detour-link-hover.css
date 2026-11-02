@@ -1,0 +1,15 @@
+/* OHLUCINDA Detours: match the HOME's gentle 3px / 0.28s link movement.
+   Relative positioning leaves Japanese line wrapping, underlines and spacing intact.
+   Restrict the effect to page-content links, never the top site navigation. */
+main a[href] {
+  position: relative;
+  top: 0;
+  transition: top .28s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  main a[href]:hover { top: 3px; }
+}
+main a[href]:focus-visible { top: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  main a[href] { transition: none; }
+}
