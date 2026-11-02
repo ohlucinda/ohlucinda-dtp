@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Author’s Works | Hime</title>
+<meta name="description" content="Honey and Honey II by Hime. Meet Beckett and Melina in two Japanese-language Kindle novels.">
+<link rel="canonical" href="https://ohlucinda.com/books/en/">
+<link rel="alternate" hreflang="ja" href="https://ohlucinda.com/books/">
+<link rel="alternate" hreflang="en" href="https://ohlucinda.com/books/en/">
+<link rel="stylesheet" href="https://use.typekit.net/qsa5fag.css">
+<style>
+:root{--paper:#fbfaf8;--ink:#343434;--muted:#777a80;--footer:#506a84}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;min-height:100svh;display:flex;flex-direction:column;background:var(--paper);color:var(--ink);font-family:"adobe-caslon-pro",Georgia,serif;}
+a{color:inherit}
+.language-switch { position:absolute; top:20px; right:clamp(18px,4vw,52px); font-size:13px; text-decoration:none; letter-spacing:.04em; color:#596574; }
+.language-switch:hover,.language-switch:focus-visible { text-decoration:underline; }
+main{flex:1}
+.page{width:min(930px,calc(100% - 60px));margin:0 auto;padding:112px 0 72px}
+h1{font-size:clamp(28px,3vw,38px);font-weight:400;text-align:center;letter-spacing:.13em;margin:0 0 106px}
+.book{display:grid;grid-template-columns:218px minmax(0,1fr);gap:clamp(44px,7vw,91px);align-items:start}
+.book + .book{border-top:1px solid #dcdad6;margin-top:103px;padding-top:103px}
+.cover-column{min-width:0}
+.book-cover{display:block;line-height:0;max-width:100%;transition:transform .24s ease}
+.book-cover img{display:block;width:100%;height:auto}
+.book-cover:hover,.book-cover:focus-visible{transform:translateY(-4px)}
+.book-detail{min-width:0}
+h2{font-size:27px;font-weight:400;letter-spacing:.13em;margin:4px 0 31px;line-height:1.5}
+.book-description{font-size:clamp(15px,1.45vw,17px);line-height:1.9;letter-spacing:.035em;overflow-wrap:anywhere}
+.book-description p{margin:0 0 1.05em;white-space:normal}
+.book-description p:last-child{margin-bottom:0}
+.amazon{margin-top:40px;font-size:15px;letter-spacing:.025em;text-underline-offset:5px;text-decoration-thickness:1px;display:inline-block;transition:color .2s ease,transform .2s ease}
+.amazon:hover,.amazon:focus-visible{color:#506a84;transform:translateY(3px)}
+.affiliate-disclosure{max-width:740px;margin:80px auto 0;padding:0 8px;text-align:center;color:#60656b;font-size:clamp(13px,1.2vw,14px);line-height:1.9;letter-spacing:.015em}
+.affiliate-disclosure p{margin:0}
+.affiliate-disclosure p+p{margin-top:7px}
+.end-nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;width:min(930px,calc(100% - 60px));margin:0 auto;padding:72px 0 110px;font-size:15px;letter-spacing:.05em}
+.end-nav a{text-decoration:none;display:inline-block;padding-bottom:5px;border-bottom:1px solid #c5c4c2;transition:color .2s ease,transform .2s ease}
+.end-nav a:hover,.end-nav a:focus-visible{color:#506a84;transform:translateY(3px)}
+.end-nav .prev{justify-self:start}
+.end-nav .home{justify-self:center}
+footer{background:#506a84;color:#fff;text-align:center;padding:35px 16px 31px;font-size:14px;line-height:1.6}
+.footer-part{margin-bottom:12px}
+.footer-row{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap}
+footer a{color:inherit}
+.footer-row a{display:inline-block;transition:transform .18s ease,color .18s ease}
+.footer-row a:hover,.footer-row a:focus-visible{color:#ffe0ad;transform:translateY(3px)}
+.copyright{margin-top:15px;font-size:12px}
+@media(max-width:680px){
+  .page{width:min(calc(100% - 42px),480px);padding:76px 0 32px}
+  h1{margin-bottom:68px;font-size:28px}
+  .book{grid-template-columns:minmax(0,1fr);gap:36px;justify-items:center}
+  .book-cover{width:min(63vw,225px)}
+  .book-detail{width:100%}
+  h2{font-size:24px;margin:0 0 24px}
+  .book-description{font-size:16px;line-height:1.95}
+  .book + .book{margin-top:72px;padding-top:72px}
+  .end-nav{width:min(calc(100% - 42px),480px);padding:55px 0 85px;font-size:13px;gap:8px}
+  footer{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){.book-cover,.amazon,.end-nav a,.footer-row a{transition:none!important} .book-cover:hover,.book-cover:focus-visible,.amazon:hover,.amazon:focus-visible,.end-nav a:hover,.end-nav a:focus-visible,.footer-row a:hover,.footer-row a:focus-visible{transform:none!important}}
+
+/* Shared OHLUCINDA top navigation: preserve the original book presentation. */
+/* OHLUCINDA HOME-aligned navigation, scoped to this header only. */
+:root{--books-nav-edge:clamp(22px,5vw,76px)}
+@media(max-width:800px){:root{--books-nav-edge:clamp(18px,4vw,32px)}}
+@media(max-width:640px){:root{--books-nav-edge:20px}}
+.ohl-books-nav{
+ position:absolute;z-index:20;
+ top:calc(30px + (clamp(26px,3.1vw,41px) * 1.2 - 21px)/2);
+ right:max(var(--books-nav-edge),calc((100vw - 1190px)/2 + var(--books-nav-edge)));
+ display:flex;align-items:center;justify-content:flex-end;gap:9px;
+ margin:0;padding:0;border:0;background:transparent;
+ font:400 14px/1.5 'adobe-caslon-pro',Georgia,serif;
+ letter-spacing:.02em;color:#171717;white-space:nowrap;
+}
+.ohl-books-nav a,.ohl-books-nav span{
+ font:inherit;letter-spacing:inherit;color:inherit;
+ margin:0;padding:0;border:0;text-decoration:none;
+}
+.ohl-books-nav .selected{text-decoration:underline;text-underline-offset:5px}
+.ohl-books-nav .unavailable{opacity:.55;cursor:default}
+.ohl-books-nav .return{margin-right:20px}
+.ohl-books-nav .home-return{margin-left:20px}
+.ohl-books-nav a:hover{text-decoration:underline;text-underline-offset:5px}
+@media(max-width:560px){
+ .ohl-books-nav{top:calc(23px + (27px * 1.2 - 21px)/2);gap:6px}
+ .ohl-books-nav .return{margin-right:12px}
+ .ohl-books-nav .home-return{margin-left:12px}
+}
+
+/* Mirror the Anything Goes viewer: one language group and separate 20px HOME gap. */
+.ohl-books-nav{gap:0}
+.ohl-books-nav .ohl-language-group{display:flex;align-items:center;gap:9px;white-space:nowrap}
+@media(max-width:560px){.ohl-books-nav .ohl-language-group{gap:6px}}
+
+</style>
+</head>
+<body>
+<nav class="ohl-books-nav" aria-label="Site navigation"><div class="ohl-language-group"><a lang="ja" href="/books/">日本語</a><span>/</span><span class="selected" lang="en">English</span></div><a class="home-return" href="/en/">HOME</a></nav>
+<main>
+<div class="page">
+<h1>Author's Works</h1>
+<section class="book" aria-labelledby="book-title-1">
+      <div class="cover-column">
+        <a class="book-cover" href="https://link.amazon/B00MdTy5C" target="_blank" rel="noopener noreferrer" aria-label="View Honey (Japanese edition) on Amazon"><img src="/images/mitsu-official-ohlucinda.svg" alt="Cover of Honey (蜜)" width="1600" height="2560" loading="eager"></a>
+      </div>
+      <div class="book-detail">
+        <h2 id="book-title-1">Honey <span lang="ja" style="font-size:.64em">（蜜）</span></h2>
+        <div class="book-description">
+<p>“Why don’t you become a bee too, Beckett?”<br>“I can’t.”<br>“Have you tried?”</p>
+<p>Whenever Melina starts something, Beckett’s plans go awry.</p>
+<p>Beckett is human. Melina is a bee. Together, they travel through space in a spaceship.</p>
+<p>Melina can take human form.</p>
+<p>She can speak, too.</p>
+<p>But that doesn’t mean she thinks like a human.</p>
+<p>Beckett wants to know.</p>
+<p>He wants to find out for himself.</p>
+<p>Once something catches his attention, he can’t leave it alone.</p>
+<p>Space is vast.</p>
+<p>But the spaceship they live in is astonishingly small.</p>
+<p>Melina’s simplest actions can drive Beckett to his limits.</p>
+<p>What Beckett calls worry looks like play to Melina.</p>
+<p>The more desperate he becomes, the more delighted she seems.</p>
+<p>Even when they look at the same thing, they don’t see it the same way.</p>
+<p>Yet Beckett cannot stop being with her.</p>
+<p>Some things happen only because someone else is there.</p>
+<p>Getting angry.</p>
+<p>Searching.</p>
+<p>Saying no.</p>
+<p>Leaving.</p>
+<p>Being together with someone you cannot understand.</p>
+<p>Heading for the moon.</p>
+<p>Then a voice reaches the two of them.</p>
+<p>“You never learn, do you?”</p>
+</div>
+        <a class="amazon" href="https://link.amazon/B00MdTy5C" target="_blank" rel="noopener noreferrer">Amazon Kindle Store (Japanese edition)</a>
+      </div>
+    </section>
+<section class="book" aria-labelledby="book-title-2">
+      <div class="cover-column">
+        <a class="book-cover" href="https://link.amazon/B0ay4x9V3" target="_blank" rel="noopener noreferrer" aria-label="View Honey II (Japanese edition) on Amazon"><img src="/images/zoku-mitsu-ohlucinda.svg" alt="Cover of Honey II (続・蜜)" width="1600" height="2560" loading="eager"></a>
+      </div>
+      <div class="book-detail">
+        <h2 id="book-title-2">Honey II <span lang="ja" style="font-size:.64em">（続・蜜）</span></h2>
+        <div class="book-description">
+<p>The story of Beckett and Melina continues from <em>Honey</em>.</p>
+<p>“If I don’t do it, Melina can’t get there.”</p>
+<p>They are together.</p>
+<p>Beckett has been through one ordeal after another on their travels through space.</p>
+<p>Melina laughs.</p>
+<p>What Beckett remembers as desperate moments, Melina remembers as fun.</p>
+<p>Beckett still wants to travel with her.</p>
+<p>Then one day, he begins to tell his own story.</p>
+<p>A white flower. The moon. A red light. A black door that could lead anywhere.</p>
+<p>There is so much they don’t know.</p>
+<p>And then there is Pol, a baby girl.</p>
+<p>Beckett becomes a father, and Melina becomes a mother.</p>
+<p>And one night, a red light appears in the garden.</p>
+<p>No one knows where it leads.</p>
+<p>Beckett decides to go again.</p>
+<p>This time, all of them together.</p>
+<p>…Even though the spaceship only has room for one.</p>
+</div>
+        <a class="amazon" href="https://link.amazon/B0ay4x9V3" target="_blank" rel="noopener noreferrer">Amazon Kindle Store (Japanese edition)</a>
+      </div>
+    </section>
+<div class="affiliate-disclosure" aria-label="Amazon Associates disclosure">
+  <p>As an Amazon Associate, Hime earns from qualifying purchases.</p>
+</div>
+</div>
+<nav class="end-nav" aria-label="Book page navigation">
+<a class="prev" href="/detour/nagi/book-writing-interview/" lang="ja">Back to interview (Japanese)</a>
+<a class="home" href="/en/">HOME</a><span aria-hidden="true"></span>
+</nav>
+</main>
+<footer aria-label="Related websites and contact">
+<div class="footer-part"><em><span class="jp">Hime</span> <span lang="en">is part of OHLUCINDA</span></em></div>
+<nav aria-label="Related links" class="footer-row">
+<a href="https://ohlucinda.com" lang="en" rel="noopener noreferrer" target="_blank">OHLUCINDA</a>
+<span aria-hidden="true" class="footer-separator">|</span>
+<a href="https://jem.ohlucinda.com" lang="en" rel="noopener noreferrer" target="_blank">Je'm</a>
+<span aria-hidden="true" class="footer-separator">|</span>
+<a href="https://lyrics.ohlucinda.com" lang="en" rel="noopener noreferrer" target="_blank">Lyrics</a>
+<span aria-hidden="true" class="footer-separator">|</span>
+<a href="mailto:jemmusicja@duck.com" lang="en">GET IN TOUCH</a>
+</nav>
+<div class="copyright" lang="en">© 2026 All rights reserved</div>
+</footer>
+<script src="/assets/ohl-language-context.js" defer></script>
+</body>
+</html>
