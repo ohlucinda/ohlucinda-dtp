@@ -17,7 +17,7 @@ body > main{max-width:1150px;padding:25px clamp(22px,5vw,76px) 95px;line-height:
   right:max(clamp(22px,5vw,76px),calc((100vw - 1190px)/2 + clamp(22px,5vw,76px)));
   display:flex;align-items:center;justify-content:flex-end;gap:0;
   font:400 14px/1.5 'adobe-caslon-pro',Georgia,serif;
-  letter-spacing:.02em;white-space:nowrap
+  letter-spacing:.02em;color:#111;white-space:nowrap
 }
 .months-nav .langs{display:flex;align-items:center;gap:9px}
 .months-nav .selected{text-decoration:underline;text-underline-offset:5px}
