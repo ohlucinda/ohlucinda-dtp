@@ -20,9 +20,9 @@ body > main{max-width:1150px;padding:25px clamp(22px,5vw,76px) 95px;line-height:
   letter-spacing:.02em;color:#111;white-space:nowrap
 }
 .months-nav .langs{display:flex;align-items:center;gap:9px}
-.months-nav .selected{text-decoration:underline;text-underline-offset:5px}
+.months-nav .selected{color:#111;text-decoration:underline;text-underline-offset:5px}
 .months-nav .unavailable{color:#999}
-.months-nav .home-link{margin-left:20px;text-decoration:none}
+.months-nav .home-link{margin-left:20px;color:#111;text-decoration:none}
 .months-nav a:hover{text-decoration:underline;text-underline-offset:5px}
 .months-hub .months-head{padding:110px 0 58px}
 .months-hub .eyebrow{margin:0 0 14px;font:400 12px/1.5 'adobe-caslon-pro',Georgia,serif;letter-spacing:.14em;color:#7a7a7a}
